@@ -1,0 +1,15 @@
+C:\projects\mentoria\projeto_mentoria_api\ApiMentoria\Repository\bin\Debug\netcoreapp3.1\Core.dll
+C:\projects\mentoria\projeto_mentoria_api\ApiMentoria\Repository\obj\Debug\netcoreapp3.1\Repository.csprojAssemblyReference.cache
+C:\projects\mentoria\projeto_mentoria_api\ApiMentoria\Repository\obj\Debug\netcoreapp3.1\Repository.AssemblyInfoInputs.cache
+C:\projects\mentoria\projeto_mentoria_api\ApiMentoria\Repository\obj\Debug\netcoreapp3.1\Repository.AssemblyInfo.cs
+C:\projects\mentoria\projeto_mentoria_api\ApiMentoria\Repository\obj\Debug\netcoreapp3.1\Repository.csproj.CoreCompileInputs.cache
+C:\projects\mentoria\projeto_mentoria_api\ApiMentoria\Repository\bin\Debug\netcoreapp3.1\Repository.deps.json
+C:\projects\mentoria\projeto_mentoria_api\ApiMentoria\Repository\bin\Debug\netcoreapp3.1\Repository.runtimeconfig.json
+C:\projects\mentoria\projeto_mentoria_api\ApiMentoria\Repository\bin\Debug\netcoreapp3.1\Repository.runtimeconfig.dev.json
+C:\projects\mentoria\projeto_mentoria_api\ApiMentoria\Repository\bin\Debug\netcoreapp3.1\Repository.dll
+C:\projects\mentoria\projeto_mentoria_api\ApiMentoria\Repository\bin\Debug\netcoreapp3.1\Repository.pdb
+C:\projects\mentoria\projeto_mentoria_api\ApiMentoria\Repository\bin\Debug\netcoreapp3.1\Core.pdb
+C:\projects\mentoria\projeto_mentoria_api\ApiMentoria\Repository\obj\Debug\netcoreapp3.1\Repository.csproj.CopyComplete
+C:\projects\mentoria\projeto_mentoria_api\ApiMentoria\Repository\obj\Debug\netcoreapp3.1\Repository.dll
+C:\projects\mentoria\projeto_mentoria_api\ApiMentoria\Repository\obj\Debug\netcoreapp3.1\Repository.pdb
+C:\projects\mentoria\projeto_mentoria_api\ApiMentoria\Repository\obj\Debug\netcoreapp3.1\Repository.genruntimeconfig.cache
