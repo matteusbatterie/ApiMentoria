@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\projeto_mentoria_api\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj": {}
+    "C:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\projeto_mentoria_api\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj": {
+    "C:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\projeto_mentoria_api\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
+        "projectUniqueName": "C:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
         "projectName": "ApiMentoria",
-        "projectPath": "C:\\Projects\\projeto_mentoria_api\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
+        "projectPath": "C:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
         "packagesPath": "C:\\Users\\callm\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\projeto_mentoria_api\\ApiMentoria\\ApiMentoria\\obj\\",
+        "outputPath": "C:\\Projects\\ApiMentoria\\ApiMentoria\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\callm\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -37,6 +37,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
