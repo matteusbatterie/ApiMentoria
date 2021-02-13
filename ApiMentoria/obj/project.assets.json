@@ -459,11 +459,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
+      "projectUniqueName": "C:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
       "projectName": "ApiMentoria",
-      "projectPath": "c:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
+      "projectPath": "C:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
       "packagesPath": "C:\\Users\\callm\\.nuget\\packages\\",
-      "outputPath": "c:\\Projects\\ApiMentoria\\ApiMentoria\\obj\\",
+      "outputPath": "C:\\Projects\\ApiMentoria\\ApiMentoria\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\callm\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,27 +1,26 @@
-using ApiMentoria.Class_Library.Interfaces;
-using ApiMentoria.Models;
-
+using Service.Class_Library.Repository.Interfaces;
+using Service.Class_Library.Models;
 
 using System;
 using System.Collections.Generic;
 using System.Data;
 
-namespace ApiMentoria.Class_Library.Models
+namespace Service.Class_Library.Repository
 {
-    public class UserDAL : IUserDAL
+    public class UserRepository : IUserRepository
     {
         private IDbConnection _dbConnection { get; }
         private IDbCommand _dbCommand { get; }
         private IDataReader _dataReader { get; set; }
 
-        public UserDAL(IDbConnection dbConnection, IDbCommand dbCommand, IDataReader dataReader)
+        public UserRepository(IDbConnection dbConnection, IDbCommand dbCommand, IDataReader dataReader)
         {
             this._dbConnection = dbConnection;
             this._dbCommand = dbCommand;
             this._dataReader = dataReader;
         }
 
-        public IEnumerable<User> GetAllUsers()
+        public IEnumerable<User> Retrieve()
         {
             List<User> listUsers = new List<User>();
 
@@ -61,7 +60,33 @@ namespace ApiMentoria.Class_Library.Models
             return listUsers;
         }
 
-        public void AddUser(User user)
+         public User Retrieve(int id)
+        {
+            User user = new User();
+            using (_dbConnection)
+            {
+                string query = $"SELECT * FROM [dbo].[Users] WHERE [Id] = {id}";
+
+                _dbCommand.CommandText = query;
+                _dbCommand.CommandType = CommandType.Text;
+
+                _dbConnection.Open();
+                _dataReader = _dbCommand.ExecuteReader();
+
+                while (_dataReader.Read())
+                {
+                    user.Id = Convert.ToInt32(_dataReader["Id"]);
+                    user.Name = _dataReader["Name"].ToString();
+                    user.Email = _dataReader["Email"].ToString();
+                    user.Password = _dataReader["Password"].ToString();
+                    user.CPF = _dataReader["CPF"].ToString();
+                }
+            }
+
+            return user;
+        }
+
+        public void Create(User user)
         {
             using (_dbConnection)
             {
@@ -90,7 +115,7 @@ namespace ApiMentoria.Class_Library.Models
             }
         }
 
-        public void UpdateUser(User user)
+        public void Update(User user)
         {
             using (_dbConnection)
             {
@@ -115,33 +140,7 @@ namespace ApiMentoria.Class_Library.Models
             }
         }
 
-        public User GetUser(int? id)
-        {
-            User user = new User();
-            using (_dbConnection)
-            {
-                string query = $"SELECT * FROM [dbo].[Users] WHERE [Id] = {id}";
-
-                _dbCommand.CommandText = query;
-                _dbCommand.CommandType = CommandType.Text;
-
-                _dbConnection.Open();
-                _dataReader = _dbCommand.ExecuteReader();
-
-                while (_dataReader.Read())
-                {
-                    user.Id = Convert.ToInt32(_dataReader["Id"]);
-                    user.Name = _dataReader["Name"].ToString();
-                    user.Email = _dataReader["Email"].ToString();
-                    user.Password = _dataReader["Password"].ToString();
-                    user.CPF = _dataReader["CPF"].ToString();
-                }
-            }
-
-            return user;
-        }
-
-        public void DeleteUser(int? id)
+        public void Delete(int id)
         {
             using (_dbConnection)
             {

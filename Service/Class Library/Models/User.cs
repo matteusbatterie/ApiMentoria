@@ -1,18 +1,18 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace ApiMentoria.Models
+namespace Service.Class_Library.Models
 {
-    [Table("User")]
+    // [Table("User")]
     public class User : BaseEntity
     {
-        [Required]
+        // [Key]
+        // public int Id { get; set; }
+
+        // [Required]
         public string Name { get; set; }
-        [Required]
+        // [Required]
         public string Email { get; set; }
-        [Required]
+        // [Required]
         public string Password { get; set; }
-        [Required]
+        // [Required]
         public string CPF { get; set; }
 
         public User() { }

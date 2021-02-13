@@ -1,9 +1,11 @@
-using ApiMentoria.Class_Library.Interfaces;
-using ApiMentoria.Models;
+using System.Collections.Generic;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-using System.Collections.Generic;
+using ApiMentoria.Service;
+using ApiMentoria.Models;
+using ApiMentoria.Repository.Interface;
 
 namespace ApiMentoria.Controllers
 {
@@ -12,18 +14,19 @@ namespace ApiMentoria.Controllers
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
-        private readonly IUserDAL _userDAL;
+        private readonly IUserRepository _userRepository;
+        private readonly UserService Service;
 
-        public UserController(ILogger<UserController> logger, IUserDAL userDAL)
+        public UserController(ILogger<UserController> logger, IUserRepository userRepository)
         {
             _logger = logger;
-            _userDAL = userDAL;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
         public IEnumerable<User> Get()
         {
-            return _userDAL.GetAllUsers();  
+            return _userRepository.Retrieve();  
         }
 
         [HttpPost]
@@ -36,7 +39,8 @@ namespace ApiMentoria.Controllers
                 // Email já existe
                 // CPF válido
                 // CPF já existe
-                _userDAL.AddUser(user);
+                //Service.Create(user);
+                Service.Create(user);
             }
         }
     }

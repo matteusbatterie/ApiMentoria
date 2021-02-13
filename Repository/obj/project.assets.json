@@ -6051,19 +6051,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gabriel.cordeiro\\.nuget\\packages\\": {}
+    "C:\\Users\\callm\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\projects\\mentoria\\projeto_mentoria_api\\ApiMentoria\\Repository\\Repository.csproj",
+      "projectUniqueName": "c:\\Projects\\ApiMentoria\\Repository\\Repository.csproj",
       "projectName": "Repository",
-      "projectPath": "C:\\projects\\mentoria\\projeto_mentoria_api\\ApiMentoria\\Repository\\Repository.csproj",
-      "packagesPath": "C:\\Users\\gabriel.cordeiro\\.nuget\\packages\\",
-      "outputPath": "C:\\projects\\mentoria\\projeto_mentoria_api\\ApiMentoria\\Repository\\obj\\",
+      "projectPath": "c:\\Projects\\ApiMentoria\\Repository\\Repository.csproj",
+      "packagesPath": "C:\\Users\\callm\\.nuget\\packages\\",
+      "outputPath": "c:\\Projects\\ApiMentoria\\Repository\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\gabriel.cordeiro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\callm\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6075,10 +6075,9 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\projects\\mentoria\\projeto_mentoria_api\\ApiMentoria\\Core\\Core.csproj": {
-              "projectPath": "C:\\projects\\mentoria\\projeto_mentoria_api\\ApiMentoria\\Core\\Core.csproj"
+            "c:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
+              "projectPath": "c:\\Projects\\ApiMentoria\\Core\\Core.csproj"
             }
           }
         }
@@ -6091,7 +6090,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
@@ -6141,7 +6139,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj": {}
+    "c:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj": {
+    "c:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
+        "projectUniqueName": "c:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
         "projectName": "ApiMentoria",
-        "projectPath": "C:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
+        "projectPath": "c:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
         "packagesPath": "C:\\Users\\callm\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\ApiMentoria\\ApiMentoria\\obj\\",
+        "outputPath": "c:\\Projects\\ApiMentoria\\ApiMentoria\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\callm\\AppData\\Roaming\\NuGet\\NuGet.Config",
