@@ -4,6 +4,7 @@ using ApiMentoria.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace ApiMentoria.Repository
 {
@@ -44,12 +45,7 @@ namespace ApiMentoria.Repository
                 while (_dataReader.Read())
                 {
                     User user = new User();
-                    
-                    user.Id = Convert.ToInt32(_dataReader["Id"]);
-                    user.Name = _dataReader["Name"].ToString();
-                    user.Email = _dataReader["Email"].ToString();
-                    user.Password = _dataReader["Password"].ToString();
-                    user.CPF = _dataReader["CPF"].ToString();
+                    user = MapDataReaderToEntity<User>(_dataReader, user);
 
                     listUsers.Add(user);
                 }
@@ -86,7 +82,7 @@ namespace ApiMentoria.Repository
             return user;
         }
 
-        public void Create(User user)
+        public bool Create(User user)
         {
             using (_dbConnection)
             {
@@ -113,6 +109,8 @@ namespace ApiMentoria.Repository
                 _dbCommand.ExecuteNonQuery();
                 _dbConnection.Close();
             }
+
+            return true;
         }
 
         public void Update(User user)
@@ -130,7 +128,7 @@ namespace ApiMentoria.Repository
 
                 _dbCommand.Parameters.Add(user.Id);
                 _dbCommand.Parameters.Add(user.Name);
-                _dbCommand.Parameters.Add( user.Email);
+                _dbCommand.Parameters.Add(user.Email);
                 _dbCommand.Parameters.Add(user.Password);
                 _dbCommand.Parameters.Add(user.CPF);
 
@@ -158,5 +156,20 @@ namespace ApiMentoria.Repository
                 _dbConnection.Close();
             }
         }
+
+        // TO DO: Move the following methods to a base service with generic types
+        #region Auxiliary Method
+        private TEntity MapDataReaderToEntity<TEntity>(IDataReader dataReader, TEntity entity)
+        {
+            var classType = entity.GetType();
+            var properties = classType.GetProperties();
+            foreach (var property in properties)
+            {
+                property.SetValue(entity, _dataReader[property.Name]);
+            }
+
+            return entity;
+        }
+        #endregion
     }
 }

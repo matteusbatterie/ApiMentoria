@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 using ApiMentoria.Models;
@@ -27,7 +28,7 @@ namespace ApiMentoria.Service
             return user;
         }
 
-        public override void Create(User user)
+        public override bool Create(User user)
         {
             #region lol
             // if (user.Name.Length > 10)
@@ -101,9 +102,9 @@ namespace ApiMentoria.Service
             #endregion
 
             if(!ValidateUserInfo(user))
-                return;
+                return false;
 
-            base.Create(user);
+            return base.Create(user);
         }
 
         public override void Update(User user)
@@ -123,40 +124,39 @@ namespace ApiMentoria.Service
         #region Validation
         private bool ValidateUserInfo(User user)
         {
-            return ValidateUserName(user.Name)
-                && ValidateUserEmail(user.Email)
-                && ValidateUserCpf(user.CPF);
+            return ValidateUserEmail(user.Email)
+                && ValidateUserCpf(user.CPF)
+                && ValidateUserName(user.Name);
         }
 
         private bool ValidateUserName(string name)
         {
-            // Nome tem que ter mais de 10 caracteres
-            return name.Length > 10;
+            // Nome tem que ter mais de 10 caracteres (desconsiderando whitespaces)
+            return name.Trim().Length > 10;
         }
         private bool ValidateUserEmail(string email)
         {
-            return EmailIsValid(email) && !EmailExists(email);
+            return !EmailExists(email) && EmailIsValid(email);
         }
         private bool ValidateUserCpf(string cpf)
         {
-            return CpfIsValid(cpf) && !CpfExists(cpf);
+            return !CpfExists(cpf) && CpfIsValid(cpf);
         }
 
         private bool EmailIsValid(string email)
         {
-            var regex = new Regex(@"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$", RegexOptions.Compiled);
-            return regex.IsMatch(email);
+            if(email.Contains(" ")) return false;
+
+            var addr = new System.Net.Mail.MailAddress(email);
+            return addr.Address == email;
+
+            // var regex = new Regex(@"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$", RegexOptions.Compiled);
+            // return regex.IsMatch(email);
         }
         private bool EmailExists(string email)
         {
-            bool emailExists = false;
             IEnumerable<User> allUsers = base.Retrieve();
-            foreach (User user in allUsers)
-            {
-                if (user.Email == email) emailExists = true;
-            }
-
-            return emailExists;
+            return allUsers.Any(user => user.Email == email);
         }
 
         private bool CpfIsValid(string cpf)

@@ -15,7 +15,7 @@ namespace ApiMentoria.Controllers
     {
         private readonly ILogger<UserController> _logger;
         private readonly IUserRepository _userRepository;
-        private readonly UserService Service;
+        private readonly UserService Service; // usar DI
 
         public UserController(ILogger<UserController> logger, IUserRepository userRepository)
         {
@@ -26,22 +26,19 @@ namespace ApiMentoria.Controllers
         [HttpGet]
         public IEnumerable<User> Get()
         {
-            return _userRepository.Retrieve();  
+            return _userRepository.Retrieve();
         }
 
         [HttpPost]
-        public void Create(User user)
+        public OkObjectResult Create(User user)
         {
-            if (ModelState.IsValid)
-            {
-                // Nome tem que ter mais de 10 caracteres
-                // Email é válido
-                // Email já existe
-                // CPF válido
-                // CPF já existe
-                //Service.Create(user);
-                Service.Create(user);
-            }
+            // Nome tem que ter mais de 10 caracteres
+            // Email é válido
+            // Email já existe
+            // CPF válido
+            // CPF já existe
+            //Service.Create(user);
+            return Ok(Service.Create(user));
         }
     }
 }

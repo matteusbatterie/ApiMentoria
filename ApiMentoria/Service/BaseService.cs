@@ -28,9 +28,11 @@ namespace ApiMentoria.Service
             return _repository.Retrieve(id);
         }
 
-        public virtual void Create(TEntity entity)
+        public virtual bool Create(TEntity entity)
         {
             _repository.Create(entity);
+
+            return true;
         }
 
         public virtual void Update(TEntity entity)

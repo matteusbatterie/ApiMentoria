@@ -6,7 +6,7 @@ namespace ApiMentoria.Repository.Interface
     {
         IEnumerable<TEntity> Retrieve();
         TEntity Retrieve(int id);
-        void Create(TEntity user);
+        bool Create(TEntity user);
         void Update(TEntity user);
         void Delete(int id);
     }
