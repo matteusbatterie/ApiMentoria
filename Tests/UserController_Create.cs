@@ -5,8 +5,6 @@ using Xunit;
 using Moq;
 
 using ApiMentoria.Controllers;
-using ApiMentoria.Repository.Interface;
-using ApiMentoria.Models;
 
 namespace Tests
 {

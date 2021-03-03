@@ -1,6 +1,6 @@
 using System;
 
-namespace ApiMentoria
+namespace ApiMentoria.Models
 {
     public class WeatherForecast
     {

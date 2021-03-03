@@ -1,31 +1,31 @@
-using ApiMentoria.Repository.Interface;
-using ApiMentoria.Models;
-
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 
-namespace ApiMentoria.Repository
+using Core.Abstractions.Repository;
+using Core.Entities;
+
+using Repository.Helpers;
+
+namespace Repository
 {
     public class UserRepository : IUserRepository
     {
-        private IDbConnection _dbConnection { get; }
-        private IDbCommand _dbCommand { get; }
-        private IDataReader _dataReader { get; set; }
+        public readonly IDbConnection _dbConnection;
+        public readonly IDbCommand _dbCommand; 
+        public IDataReader _dataReader { get; set; }
 
-        public UserRepository(IDbConnection dbConnection, IDbCommand dbCommand, IDataReader dataReader)
-        {
-            this._dbConnection = dbConnection;
-            this._dbCommand = dbCommand;
-            this._dataReader = dataReader;
+        public UserRepository(IDbConnection dbConnection, IDbCommand dbCommand) 
+        { 
+            _dbConnection = dbConnection;
+           _dbCommand = dbCommand;
         }
 
         public IEnumerable<User> Retrieve()
         {
             List<User> listUsers = new List<User>();
 
-            using (_dbConnection)
+            using (var dbConnection = new Microsoft.Data.SqlClient.SqlConnection("Data Source=BATTERY\\SQLEXPRESS;Initial Catalog=Mentoria;Integrated Security=True"))
             {
                 // Create query
                 string query = @"SELECT [Id], 
@@ -37,17 +37,21 @@ namespace ApiMentoria.Repository
                 _dbCommand.CommandText = query;
                 _dbCommand.CommandType = CommandType.Text;
 
+                var dbCommand = new Microsoft.Data.SqlClient.SqlCommand();
+                dbCommand.CommandText = query;
+                dbCommand.CommandType = CommandType.Text;
+
                 _dbConnection.Open();
-                _dataReader = _dbCommand.ExecuteReader();
+                var dataReader = dbCommand.ExecuteReader();
 
                 // Read data 
-                // TO DO: Mover para um método usando Reflection
                 while (_dataReader.Read())
                 {
                     User user = new User();
-                    user = MapDataReaderToEntity<User>(_dataReader, user);
+                    user = RepositoryMapper.MapDataReaderToEntity<User>(_dataReader, user);
 
                     listUsers.Add(user);
+                    Console.WriteLine(listUsers.ToString());
                 }
 
                 _dbConnection.Close();
@@ -71,12 +75,10 @@ namespace ApiMentoria.Repository
 
                 while (_dataReader.Read())
                 {
-                    user.Id = Convert.ToInt32(_dataReader["Id"]);
-                    user.Name = _dataReader["Name"].ToString();
-                    user.Email = _dataReader["Email"].ToString();
-                    user.Password = _dataReader["Password"].ToString();
-                    user.CPF = _dataReader["CPF"].ToString();
+                    user = RepositoryMapper.MapDataReaderToEntity(_dataReader, user);
                 }
+
+                _dbConnection.Close();
             }
 
             return user;
@@ -156,20 +158,5 @@ namespace ApiMentoria.Repository
                 _dbConnection.Close();
             }
         }
-
-        // TO DO: Move the following methods to a base service with generic types
-        #region Auxiliary Method
-        private TEntity MapDataReaderToEntity<TEntity>(IDataReader dataReader, TEntity entity)
-        {
-            var classType = entity.GetType();
-            var properties = classType.GetProperties();
-            foreach (var property in properties)
-            {
-                property.SetValue(entity, _dataReader[property.Name]);
-            }
-
-            return entity;
-        }
-        #endregion
     }
 }

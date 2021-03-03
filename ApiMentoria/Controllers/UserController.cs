@@ -1,11 +1,13 @@
 using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-using ApiMentoria.Service;
-using ApiMentoria.Models;
-using ApiMentoria.Repository.Interface;
+using Core.Entities;
+using Core.Abstractions.Service;
+
+using Service;
 
 namespace ApiMentoria.Controllers
 {
@@ -14,31 +16,26 @@ namespace ApiMentoria.Controllers
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
-        private readonly IUserRepository _userRepository;
-        private readonly UserService Service; // usar DI
+        private IUserService _service;
 
-        public UserController(ILogger<UserController> logger, IUserRepository userRepository)
+        public UserController(ILogger<UserController> logger, IUserService service)
         {
             _logger = logger;
-            _userRepository = userRepository;
+            _service = service;
         }
 
         [HttpGet]
-        public IEnumerable<User> Get()
+        public List<User> Get()
         {
-            return _userRepository.Retrieve();
+            var users = new List<User>();
+            users.AddRange(_service.Retrieve());
+            return users;
         }
 
         [HttpPost]
         public OkObjectResult Create(User user)
         {
-            // Nome tem que ter mais de 10 caracteres
-            // Email é válido
-            // Email já existe
-            // CPF válido
-            // CPF já existe
-            //Service.Create(user);
-            return Ok(Service.Create(user));
+            return Ok(_service.Create(user));
         }
     }
 }

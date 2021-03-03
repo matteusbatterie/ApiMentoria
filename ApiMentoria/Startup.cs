@@ -1,13 +1,17 @@
-using ApiMentoria.Repository;
-using ApiMentoria.Repository.Interface;
+using System.Data;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-using System.Data;
-using System.Data.SqlClient;
+using Core.Abstractions.Repository;
+using Core.Abstractions.Service;
+
+using Repository;
+using Service;
+using Microsoft.Data.SqlClient;
 
 namespace ApiMentoria
 {
@@ -25,6 +29,8 @@ namespace ApiMentoria
         {
             services.AddControllers();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IDbCommand, SqlCommand>();
             services.AddTransient<IDbConnection>(db => new SqlConnection(
                     Configuration.GetConnectionString("ApiMentoriaContext")));
         }
