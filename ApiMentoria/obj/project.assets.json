@@ -6208,11 +6208,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
+      "projectUniqueName": "C:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
       "projectName": "ApiMentoria",
-      "projectPath": "c:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
+      "projectPath": "C:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
       "packagesPath": "C:\\Users\\callm\\.nuget\\packages\\",
-      "outputPath": "c:\\Projects\\ApiMentoria\\ApiMentoria\\obj\\",
+      "outputPath": "C:\\Projects\\ApiMentoria\\ApiMentoria\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\callm\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6228,14 +6228,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "c:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
-              "projectPath": "c:\\Projects\\ApiMentoria\\Core\\Core.csproj"
+            "C:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
+              "projectPath": "C:\\Projects\\ApiMentoria\\Core\\Core.csproj"
             },
-            "c:\\Projects\\ApiMentoria\\Repository\\Repository.csproj": {
-              "projectPath": "c:\\Projects\\ApiMentoria\\Repository\\Repository.csproj"
+            "C:\\Projects\\ApiMentoria\\Repository\\Repository.csproj": {
+              "projectPath": "C:\\Projects\\ApiMentoria\\Repository\\Repository.csproj"
             },
-            "c:\\Projects\\ApiMentoria\\Service\\Service.csproj": {
-              "projectPath": "c:\\Projects\\ApiMentoria\\Service\\Service.csproj"
+            "C:\\Projects\\ApiMentoria\\Service\\Service.csproj": {
+              "projectPath": "C:\\Projects\\ApiMentoria\\Service\\Service.csproj"
             }
           }
         }

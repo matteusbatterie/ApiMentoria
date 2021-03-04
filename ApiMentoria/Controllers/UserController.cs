@@ -25,11 +25,9 @@ namespace ApiMentoria.Controllers
         }
 
         [HttpGet]
-        public List<User> Get()
+        public IEnumerable<User> Get()
         {
-            var users = new List<User>();
-            users.AddRange(_service.Retrieve());
-            return users;
+            return _service.Retrieve();
         }
 
         [HttpPost]

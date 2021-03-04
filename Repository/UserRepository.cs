@@ -23,7 +23,7 @@ namespace Repository
 
         public IEnumerable<User> Retrieve()
         {
-            List<User> listUsers = new List<User>();
+            List<User> users = new List<User>();
 
             using (var dbConnection = new Microsoft.Data.SqlClient.SqlConnection("Data Source=BATTERY\\SQLEXPRESS;Initial Catalog=Mentoria;Integrated Security=True"))
             {
@@ -34,15 +34,16 @@ namespace Repository
                                         [Password], 
                                         [CPF] 
                                    FROM [dbo].[Users]";
+
+                _dbCommand.CommandText = query;
+                _dbCommand.CommandType = CommandType.Text;
+                _dbCommand.Connection = _dbConnection;
+
                 _dbCommand.CommandText = query;
                 _dbCommand.CommandType = CommandType.Text;
 
-                var dbCommand = new Microsoft.Data.SqlClient.SqlCommand();
-                dbCommand.CommandText = query;
-                dbCommand.CommandType = CommandType.Text;
-
                 _dbConnection.Open();
-                var dataReader = dbCommand.ExecuteReader();
+                _dataReader = _dbCommand.ExecuteReader();
 
                 // Read data 
                 while (_dataReader.Read())
@@ -50,14 +51,14 @@ namespace Repository
                     User user = new User();
                     user = RepositoryMapper.MapDataReaderToEntity<User>(_dataReader, user);
 
-                    listUsers.Add(user);
-                    Console.WriteLine(listUsers.ToString());
+                    users.Add(user);
+                    Console.WriteLine(users.ToString());
                 }
 
                 _dbConnection.Close();
             }
 
-            return listUsers;
+            return users;
         }
 
         public User Retrieve(int id)
@@ -69,6 +70,7 @@ namespace Repository
 
                 _dbCommand.CommandText = query;
                 _dbCommand.CommandType = CommandType.Text;
+                _dbCommand.Connection = _dbConnection;
 
                 _dbConnection.Open();
                 _dataReader = _dbCommand.ExecuteReader();
@@ -101,6 +103,7 @@ namespace Repository
 
                 _dbCommand.CommandText = query;
                 _dbCommand.CommandType = CommandType.Text;
+                _dbCommand.Connection = _dbConnection;
 
                 _dbCommand.Parameters.Add(user.Name);
                 _dbCommand.Parameters.Add(user.Email);
@@ -125,8 +128,10 @@ namespace Repository
                                         [Password] = @Password, 
                                         [CPF] = @CPF
                                     WHERE [Id] = @Id";
+
                 _dbCommand.CommandText = query;
                 _dbCommand.CommandType = CommandType.Text;
+                _dbCommand.Connection = _dbConnection;
 
                 _dbCommand.Parameters.Add(user.Id);
                 _dbCommand.Parameters.Add(user.Name);
@@ -150,6 +155,7 @@ namespace Repository
 
                 _dbCommand.CommandText = query;
                 _dbCommand.CommandType = CommandType.Text;
+                _dbCommand.Connection = _dbConnection;
 
                 _dbCommand.Parameters.Add(id);
 
