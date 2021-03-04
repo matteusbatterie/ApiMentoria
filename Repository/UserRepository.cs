@@ -25,7 +25,7 @@ namespace Repository
         {
             List<User> users = new List<User>();
 
-            using (var dbConnection = new Microsoft.Data.SqlClient.SqlConnection("Data Source=BATTERY\\SQLEXPRESS;Initial Catalog=Mentoria;Integrated Security=True"))
+            using (_dbConnection)
             {
                 // Create query
                 string query = @"SELECT [Id], 
