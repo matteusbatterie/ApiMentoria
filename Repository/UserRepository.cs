@@ -32,7 +32,7 @@ namespace Repository
                                         [Name], 
                                         [Email], 
                                         [Password], 
-                                        [CPF] 
+                                        [CPF],
                                    FROM [dbo].[Users]";
 
                 _dbCommand.CommandText = query;
@@ -52,7 +52,6 @@ namespace Repository
                     user = RepositoryMapper.MapDataReaderToEntity<User>(_dataReader, user);
 
                     users.Add(user);
-                    Console.WriteLine(users.ToString());
                 }
 
                 _dbConnection.Close();

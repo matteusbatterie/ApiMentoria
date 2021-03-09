@@ -11,6 +11,13 @@ namespace Tests
 {
     public class UserService_Create
     {
+        private readonly Mock<IUserRepository> _repository;
+        public UserService_Create()
+        {
+            _repository = new Mock<IUserRepository>();
+            _repository.Setup(x => x.Create(It.IsAny<User>())).Returns(true);
+        }
+
         #region Name
         [Theory]
 
@@ -27,10 +34,7 @@ namespace Tests
         public void CreateUserValidateUserNameTests(bool outcome, string name)
         {
             // Arrange
-            Mock<UserRepository> userRepositoryMock = new Mock<UserRepository>();
-            userRepositoryMock.Setup(x => x.Create(It.IsAny<User>())).Returns(true);
-
-            var userService = new UserService(userRepositoryMock.Object);
+            var userService = new UserService(_repository.Object);
             var user = new User()
             {
                 Name = name,
@@ -67,10 +71,7 @@ namespace Tests
         public void CreateUserValidateUserEmailTests(bool outcome, string email)
         {
             // Arrange
-            Mock<UserRepository> userRepositoryMock = new Mock<UserRepository>();
-            userRepositoryMock.Setup(x => x.Create(It.IsAny<User>())).Returns(true);
-
-            var userService = new UserService(userRepositoryMock.Object);
+            var userService = new UserService(_repository.Object);
             var user = new User()
             {
                 Name = "Testing 10 characters",
@@ -106,10 +107,7 @@ namespace Tests
         public void CreateUserValidateUserCpfTests(bool outcome, string cpf)
         {
             // Arrange
-            Mock<UserRepository> userRepositoryMock = new Mock<UserRepository>();
-            userRepositoryMock.Setup(x => x.Create(It.IsAny<User>())).Returns(true);
-
-            var userService = new UserService(userRepositoryMock.Object);
+            var userService = new UserService(_repository.Object);
             var user = new User()
             {
                 Name = "Testing 10 characters",
