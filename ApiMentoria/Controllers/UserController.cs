@@ -1,9 +1,13 @@
-using ApiMentoria.Class_Library.Interfaces;
-using ApiMentoria.Models;
+using System.Collections.Generic;
+using System.Linq;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-using System.Collections.Generic;
+using Core.Entities;
+using Core.Abstractions.Service;
+
+using Service;
 
 namespace ApiMentoria.Controllers
 {
@@ -12,32 +16,24 @@ namespace ApiMentoria.Controllers
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
-        private readonly IUserDAL _userDAL;
+        private readonly IUserService _service;
 
-        public UserController(ILogger<UserController> logger, IUserDAL userDAL)
+        public UserController(ILogger<UserController> logger, IUserService service)
         {
             _logger = logger;
-            _userDAL = userDAL;
+            _service = service;
         }
 
         [HttpGet]
         public IEnumerable<User> Get()
         {
-            return _userDAL.GetAllUsers();  
+            return _service.Retrieve();
         }
 
         [HttpPost]
-        public void Create(User user)
+        public OkObjectResult Create(User user)
         {
-            if (ModelState.IsValid)
-            {
-                // Nome tem que ter mais de 10 caracteres
-                // Email é válido
-                // Email já existe
-                // CPF válido
-                // CPF já existe
-                _userDAL.AddUser(user);
-            }
+            return Ok(_service.Create(user));
         }
     }
 }

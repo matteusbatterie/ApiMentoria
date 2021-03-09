@@ -1,20 +1,17 @@
-using ApiMentoria.Class_Library.Interfaces;
-using ApiMentoria.Class_Library.Models;
+using System.Data;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
+using Core.Abstractions.Repository;
+using Core.Abstractions.Service;
+
+using Repository;
+using Service;
+using Microsoft.Data.SqlClient;
 
 namespace ApiMentoria
 {
@@ -31,7 +28,9 @@ namespace ApiMentoria
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddTransient<IUserDAL, UserDAL>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IDbCommand, SqlCommand>();
             services.AddTransient<IDbConnection>(db => new SqlConnection(
                     Configuration.GetConnectionString("ApiMentoriaContext")));
         }
