@@ -8,9 +8,13 @@ namespace Repository.Configuration.Tables
     {
         public override void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.Property(x => x.Name)
+            builder.Property(user => user.Name)
                 .IsRequired();
-            builder.Property(x => x.Age)
+            builder.Property(user => user.Email)
+                .IsRequired();
+            builder.Property(user => user.CPF)
+                .IsRequired();
+            builder.Property(user => user.Password)
                 .IsRequired();
         }
     }

@@ -1,29 +1,29 @@
-using ApiMentoria.Class_Library.Interfaces;
-using ApiMentoria.Models;
-
-
 using System;
 using System.Collections.Generic;
 using System.Data;
 
-namespace ApiMentoria.Class_Library.Models
-{
-    public class UserDAL : IUserDAL
-    {
-        private IDbConnection _dbConnection { get; }
-        private IDbCommand _dbCommand { get; }
-        private IDataReader _dataReader { get; set; }
+using Core.Abstractions.Repository;
+using Core.Entities;
 
-        public UserDAL(IDbConnection dbConnection, IDbCommand dbCommand, IDataReader dataReader)
-        {
-            this._dbConnection = dbConnection;
-            this._dbCommand = dbCommand;
-            this._dataReader = dataReader;
+using Repository.Helpers;
+
+namespace Repository
+{
+    public class UserRepository : IUserRepository
+    {
+        public readonly IDbConnection _dbConnection;
+        public readonly IDbCommand _dbCommand; 
+        public IDataReader _dataReader { get; set; }
+
+        public UserRepository(IDbConnection dbConnection, IDbCommand dbCommand) 
+        { 
+            _dbConnection = dbConnection;
+           _dbCommand = dbCommand;
         }
 
-        public IEnumerable<User> GetAllUsers()
+        public IEnumerable<User> Retrieve()
         {
-            List<User> listUsers = new List<User>();
+            List<User> users = new List<User>();
 
             using (_dbConnection)
             {
@@ -32,8 +32,13 @@ namespace ApiMentoria.Class_Library.Models
                                         [Name], 
                                         [Email], 
                                         [Password], 
-                                        [CPF] 
+                                        [CPF],
                                    FROM [dbo].[Users]";
+
+                _dbCommand.CommandText = query;
+                _dbCommand.CommandType = CommandType.Text;
+                _dbCommand.Connection = _dbConnection;
+
                 _dbCommand.CommandText = query;
                 _dbCommand.CommandType = CommandType.Text;
 
@@ -41,27 +46,46 @@ namespace ApiMentoria.Class_Library.Models
                 _dataReader = _dbCommand.ExecuteReader();
 
                 // Read data 
-                // TO DO: Mover para um método usando Reflection
                 while (_dataReader.Read())
                 {
                     User user = new User();
-                    
-                    user.Id = Convert.ToInt32(_dataReader["Id"]);
-                    user.Name = _dataReader["Name"].ToString();
-                    user.Email = _dataReader["Email"].ToString();
-                    user.Password = _dataReader["Password"].ToString();
-                    user.CPF = _dataReader["CPF"].ToString();
+                    user = RepositoryMapper.MapDataReaderToEntity<User>(_dataReader, user);
 
-                    listUsers.Add(user);
+                    users.Add(user);
                 }
 
                 _dbConnection.Close();
             }
 
-            return listUsers;
+            return users;
         }
 
-        public void AddUser(User user)
+        public User Retrieve(int id)
+        {
+            User user = new User();
+            using (_dbConnection)
+            {
+                string query = $"SELECT * FROM [dbo].[Users] WHERE [Id] = {id}";
+
+                _dbCommand.CommandText = query;
+                _dbCommand.CommandType = CommandType.Text;
+                _dbCommand.Connection = _dbConnection;
+
+                _dbConnection.Open();
+                _dataReader = _dbCommand.ExecuteReader();
+
+                while (_dataReader.Read())
+                {
+                    user = RepositoryMapper.MapDataReaderToEntity(_dataReader, user);
+                }
+
+                _dbConnection.Close();
+            }
+
+            return user;
+        }
+
+        public bool Create(User user)
         {
             using (_dbConnection)
             {
@@ -78,7 +102,37 @@ namespace ApiMentoria.Class_Library.Models
 
                 _dbCommand.CommandText = query;
                 _dbCommand.CommandType = CommandType.Text;
+                _dbCommand.Connection = _dbConnection;
 
+                _dbCommand.Parameters.Add(user.Name);
+                _dbCommand.Parameters.Add(user.Email);
+                _dbCommand.Parameters.Add(user.Password);
+                _dbCommand.Parameters.Add(user.CPF);
+
+                _dbConnection.Open();
+                _dbCommand.ExecuteNonQuery();
+                _dbConnection.Close();
+            }
+
+            return true;
+        }
+
+        public void Update(User user)
+        {
+            using (_dbConnection)
+            {
+                string query = @"UPDATE [dbo].[Users] 
+                                    SET [Name] = @Name, 
+                                        [Email] = @Email, 
+                                        [Password] = @Password, 
+                                        [CPF] = @CPF
+                                    WHERE [Id] = @Id";
+
+                _dbCommand.CommandText = query;
+                _dbCommand.CommandType = CommandType.Text;
+                _dbCommand.Connection = _dbConnection;
+
+                _dbCommand.Parameters.Add(user.Id);
                 _dbCommand.Parameters.Add(user.Name);
                 _dbCommand.Parameters.Add(user.Email);
                 _dbCommand.Parameters.Add(user.Password);
@@ -90,58 +144,7 @@ namespace ApiMentoria.Class_Library.Models
             }
         }
 
-        public void UpdateUser(User user)
-        {
-            using (_dbConnection)
-            {
-                string query = @"UPDATE [dbo].[Users] 
-                                    SET [Name] = @Name, 
-                                        [Email] = @Email, 
-                                        [Password] = @Password, 
-                                        [CPF] = @CPF
-                                    WHERE [Id] = @Id";
-                _dbCommand.CommandText = query;
-                _dbCommand.CommandType = CommandType.Text;
-
-                _dbCommand.Parameters.Add(user.Id);
-                _dbCommand.Parameters.Add(user.Name);
-                _dbCommand.Parameters.Add( user.Email);
-                _dbCommand.Parameters.Add(user.Password);
-                _dbCommand.Parameters.Add(user.CPF);
-
-                _dbConnection.Open();
-                _dbCommand.ExecuteNonQuery();
-                _dbConnection.Close();
-            }
-        }
-
-        public User GetUser(int? id)
-        {
-            User user = new User();
-            using (_dbConnection)
-            {
-                string query = $"SELECT * FROM [dbo].[Users] WHERE [Id] = {id}";
-
-                _dbCommand.CommandText = query;
-                _dbCommand.CommandType = CommandType.Text;
-
-                _dbConnection.Open();
-                _dataReader = _dbCommand.ExecuteReader();
-
-                while (_dataReader.Read())
-                {
-                    user.Id = Convert.ToInt32(_dataReader["Id"]);
-                    user.Name = _dataReader["Name"].ToString();
-                    user.Email = _dataReader["Email"].ToString();
-                    user.Password = _dataReader["Password"].ToString();
-                    user.CPF = _dataReader["CPF"].ToString();
-                }
-            }
-
-            return user;
-        }
-
-        public void DeleteUser(int? id)
+        public void Delete(int id)
         {
             using (_dbConnection)
             {
@@ -151,6 +154,7 @@ namespace ApiMentoria.Class_Library.Models
 
                 _dbCommand.CommandText = query;
                 _dbCommand.CommandType = CommandType.Text;
+                _dbCommand.Connection = _dbConnection;
 
                 _dbCommand.Parameters.Add(id);
 
