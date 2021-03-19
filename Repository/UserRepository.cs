@@ -85,7 +85,7 @@ namespace Repository
             return user;
         }
 
-        public bool Create(User user)
+        public void Create(User user)
         {
             using (_dbConnection)
             {
@@ -113,8 +113,6 @@ namespace Repository
                 _dbCommand.ExecuteNonQuery();
                 _dbConnection.Close();
             }
-
-            return true;
         }
 
         public void Update(User user)

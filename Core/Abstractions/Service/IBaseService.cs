@@ -6,7 +6,7 @@ namespace Core.Abstractions.Service
     {
         IEnumerable<TEntity> Retrieve();
         TEntity Retrieve(int id);
-        bool Create(TEntity entity);
+        void Create(TEntity entity);
         void Update(TEntity entity);
         void Delete(int id);
     }

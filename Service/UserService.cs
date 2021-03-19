@@ -28,12 +28,12 @@ namespace Service
             return user;
         }
 
-        public bool Create(User user)
+        public void Create(User user)
         {
             if (!ValidateUserInfo(user))
-                return false;
+                return;
 
-            return _repository.Create(user);
+            _repository.Create(user);
         }
 
         public void Update(User user)

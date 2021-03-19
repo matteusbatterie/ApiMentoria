@@ -7,7 +7,7 @@ namespace Core.Abstractions.Repository
     {
         IEnumerable<User> Retrieve();
         User Retrieve(int id);
-        bool Create(User user);
+        void Create(User user);
         void Update(User entity);
         void Delete(int id);
     }

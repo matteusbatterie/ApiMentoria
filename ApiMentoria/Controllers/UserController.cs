@@ -33,7 +33,7 @@ namespace ApiMentoria.Controllers
         [HttpPost]
         public OkObjectResult Create(User user)
         {
-            return Ok(_service.Create(user));
+            return _service.Create(user);
         }
     }
 }
