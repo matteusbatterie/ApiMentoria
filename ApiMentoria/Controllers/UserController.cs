@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -7,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Core.Entities;
 using Core.Abstractions.Service;
 
-using Service;
+using Core.Services;
 
 namespace ApiMentoria.Controllers
 {

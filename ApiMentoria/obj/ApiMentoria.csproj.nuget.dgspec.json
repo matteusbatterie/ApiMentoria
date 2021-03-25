@@ -1,40 +1,38 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj": {}
+    "f:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj": {
+    "f:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
+        "projectUniqueName": "f:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
         "projectName": "ApiMentoria",
-        "projectPath": "C:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
-        "packagesPath": "C:\\Users\\callm\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\ApiMentoria\\ApiMentoria\\obj\\",
+        "projectPath": "f:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
+        "packagesPath": "C:\\Users\\Battery\\.nuget\\packages\\",
+        "outputPath": "f:\\Projects\\ApiMentoria\\ApiMentoria\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\callm\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Battery\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
-                "projectPath": "C:\\Projects\\ApiMentoria\\Core\\Core.csproj"
+              "f:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
+                "projectPath": "f:\\Projects\\ApiMentoria\\Core\\Core.csproj"
               },
-              "C:\\Projects\\ApiMentoria\\Repository\\Repository.csproj": {
-                "projectPath": "C:\\Projects\\ApiMentoria\\Repository\\Repository.csproj"
+              "f:\\Projects\\ApiMentoria\\Repository\\Repository.csproj": {
+                "projectPath": "f:\\Projects\\ApiMentoria\\Repository\\Repository.csproj"
               },
-              "C:\\Projects\\ApiMentoria\\Service\\Service.csproj": {
-                "projectPath": "C:\\Projects\\ApiMentoria\\Service\\Service.csproj"
+              "f:\\Projects\\ApiMentoria\\Service\\Service.csproj": {
+                "projectPath": "f:\\Projects\\ApiMentoria\\Service\\Service.csproj"
               }
             }
           }
@@ -75,24 +73,22 @@
         }
       }
     },
-    "C:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
+    "f:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\ApiMentoria\\Core\\Core.csproj",
+        "projectUniqueName": "f:\\Projects\\ApiMentoria\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Projects\\ApiMentoria\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\callm\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\ApiMentoria\\Core\\obj\\",
+        "projectPath": "f:\\Projects\\ApiMentoria\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\Battery\\.nuget\\packages\\",
+        "outputPath": "f:\\Projects\\ApiMentoria\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\callm\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Battery\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -127,31 +123,83 @@
         }
       }
     },
-    "C:\\Projects\\ApiMentoria\\Repository\\Repository.csproj": {
+    "f:\\Projects\\ApiMentoria\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\ApiMentoria\\Repository\\Repository.csproj",
-        "projectName": "Repository",
-        "projectPath": "C:\\Projects\\ApiMentoria\\Repository\\Repository.csproj",
-        "packagesPath": "C:\\Users\\callm\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\ApiMentoria\\Repository\\obj\\",
+        "projectUniqueName": "f:\\Projects\\ApiMentoria\\Infrastructure\\Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "f:\\Projects\\ApiMentoria\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Battery\\.nuget\\packages\\",
+        "outputPath": "f:\\Projects\\ApiMentoria\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\callm\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Battery\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
-                "projectPath": "C:\\Projects\\ApiMentoria\\Core\\Core.csproj"
+              "f:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
+                "projectPath": "f:\\Projects\\ApiMentoria\\Core\\Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "f:\\Projects\\ApiMentoria\\Repository\\Repository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "f:\\Projects\\ApiMentoria\\Repository\\Repository.csproj",
+        "projectName": "Repository",
+        "projectPath": "f:\\Projects\\ApiMentoria\\Repository\\Repository.csproj",
+        "packagesPath": "C:\\Users\\Battery\\.nuget\\packages\\",
+        "outputPath": "f:\\Projects\\ApiMentoria\\Repository\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Battery\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "f:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
+                "projectPath": "f:\\Projects\\ApiMentoria\\Core\\Core.csproj"
               }
             }
           }
@@ -167,23 +215,23 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[5.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[5.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[5.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[5.0.4, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -217,34 +265,32 @@
         }
       }
     },
-    "C:\\Projects\\ApiMentoria\\Service\\Service.csproj": {
+    "f:\\Projects\\ApiMentoria\\Service\\Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\ApiMentoria\\Service\\Service.csproj",
+        "projectUniqueName": "f:\\Projects\\ApiMentoria\\Service\\Service.csproj",
         "projectName": "Service",
-        "projectPath": "C:\\Projects\\ApiMentoria\\Service\\Service.csproj",
-        "packagesPath": "C:\\Users\\callm\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\ApiMentoria\\Service\\obj\\",
+        "projectPath": "f:\\Projects\\ApiMentoria\\Service\\Service.csproj",
+        "packagesPath": "C:\\Users\\Battery\\.nuget\\packages\\",
+        "outputPath": "f:\\Projects\\ApiMentoria\\Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\callm\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Battery\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
-                "projectPath": "C:\\Projects\\ApiMentoria\\Core\\Core.csproj"
+              "f:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
+                "projectPath": "f:\\Projects\\ApiMentoria\\Core\\Core.csproj"
               },
-              "C:\\Projects\\ApiMentoria\\Repository\\Repository.csproj": {
-                "projectPath": "C:\\Projects\\ApiMentoria\\Repository\\Repository.csproj"
+              "f:\\Projects\\ApiMentoria\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "f:\\Projects\\ApiMentoria\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }

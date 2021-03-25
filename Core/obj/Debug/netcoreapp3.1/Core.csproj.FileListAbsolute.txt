@@ -15,3 +15,11 @@ C:\Projects\ApiMentoria\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfoInputs.cac
 C:\Projects\ApiMentoria\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfo.cs
 C:\Projects\ApiMentoria\Core\obj\Debug\netcoreapp3.1\Core.dll
 C:\Projects\ApiMentoria\Core\obj\Debug\netcoreapp3.1\Core.pdb
+f:\Projects\ApiMentoria\Core\bin\Debug\netcoreapp3.1\Core.deps.json
+f:\Projects\ApiMentoria\Core\bin\Debug\netcoreapp3.1\Core.dll
+f:\Projects\ApiMentoria\Core\bin\Debug\netcoreapp3.1\Core.pdb
+f:\Projects\ApiMentoria\Core\obj\Debug\netcoreapp3.1\Core.csprojAssemblyReference.cache
+f:\Projects\ApiMentoria\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfoInputs.cache
+f:\Projects\ApiMentoria\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfo.cs
+f:\Projects\ApiMentoria\Core\obj\Debug\netcoreapp3.1\Core.dll
+f:\Projects\ApiMentoria\Core\obj\Debug\netcoreapp3.1\Core.pdb
