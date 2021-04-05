@@ -10,7 +10,7 @@ using Core.Abstractions.Repository;
 using Core.Abstractions.Service;
 
 using Repository;
-using Service;
+using Core.Services;
 using Microsoft.Data.SqlClient;
 
 namespace ApiMentoria

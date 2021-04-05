@@ -5,7 +5,7 @@ using Core.Entities;
 using Core.Abstractions.Service;
 using Core.Abstractions.Repository;
 
-namespace Service
+namespace Core.Services
 {
     public class UserService : IUserService
     {
@@ -16,6 +16,7 @@ namespace Service
             _repository = repository;
         }
 
+        
         public IEnumerable<User> Retrieve()
         {
             IEnumerable<User> users = _repository.Retrieve();

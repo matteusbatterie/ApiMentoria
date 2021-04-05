@@ -4,7 +4,7 @@ using Xunit;
 using Core.Entities;
 using Core.Abstractions.Repository;
 
-using Service;
+using Core.Services;
 
 namespace Tests
 {
