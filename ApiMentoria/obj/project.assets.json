@@ -1641,19 +1641,6 @@
           "bin/placeholder/Core.dll": {}
         }
       },
-      "Infrastructure/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "dependencies": {
-          "Core": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Infrastructure.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Infrastructure.dll": {}
-        }
-      },
       "Repository/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -1670,20 +1657,6 @@
         },
         "runtime": {
           "bin/placeholder/Repository.dll": {}
-        }
-      },
-      "Service/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "dependencies": {
-          "Core": "1.0.0",
-          "Infrastructure": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Service.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Service.dll": {}
         }
       }
     }
@@ -6196,27 +6169,16 @@
       "path": "../Core/Core.csproj",
       "msbuildProject": "../Core/Core.csproj"
     },
-    "Infrastructure/1.0.0": {
-      "type": "project",
-      "path": "../Infrastructure/Infrastructure.csproj",
-      "msbuildProject": "../Infrastructure/Infrastructure.csproj"
-    },
     "Repository/1.0.0": {
       "type": "project",
       "path": "../Repository/Repository.csproj",
       "msbuildProject": "../Repository/Repository.csproj"
-    },
-    "Service/1.0.0": {
-      "type": "project",
-      "path": "../Service/Service.csproj",
-      "msbuildProject": "../Service/Service.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Core >= 1.0.0",
       "Repository >= 1.0.0",
-      "Service >= 1.0.0",
       "System.Data.SqlClient >= 4.8.2"
     ]
   },
@@ -6249,9 +6211,6 @@
             },
             "f:\\Projects\\ApiMentoria\\Repository\\Repository.csproj": {
               "projectPath": "f:\\Projects\\ApiMentoria\\Repository\\Repository.csproj"
-            },
-            "f:\\Projects\\ApiMentoria\\Service\\Service.csproj": {
-              "projectPath": "f:\\Projects\\ApiMentoria\\Service\\Service.csproj"
             }
           }
         }

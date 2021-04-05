@@ -26,7 +26,6 @@
         "dependencies": {
           "Core": "1.0.0",
           "Repository": "1.0.0",
-          "Service": "1.0.0",
           "System.Data.SqlClient": "4.8.2",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
@@ -1527,17 +1526,6 @@
           "Core.dll": {}
         }
       },
-      "Infrastructure/1.0.0": {
-        "dependencies": {
-          "Core": "1.0.0"
-        },
-        "runtime": {
-          "Infrastructure.dll": {}
-        },
-        "compile": {
-          "Infrastructure.dll": {}
-        }
-      },
       "Repository/1.0.0": {
         "dependencies": {
           "Core": "1.0.0",
@@ -1552,18 +1540,6 @@
         },
         "compile": {
           "Repository.dll": {}
-        }
-      },
-      "Service/1.0.0": {
-        "dependencies": {
-          "Core": "1.0.0",
-          "Infrastructure": "1.0.0"
-        },
-        "runtime": {
-          "Service.dll": {}
-        },
-        "compile": {
-          "Service.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
@@ -3845,17 +3821,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Infrastructure/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "Repository/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Service/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

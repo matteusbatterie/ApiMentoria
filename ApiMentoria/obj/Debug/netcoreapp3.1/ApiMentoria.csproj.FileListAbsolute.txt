@@ -177,13 +177,9 @@ f:\Projects\ApiMentoria\ApiMentoria\bin\Debug\netcoreapp3.1\runtimes\win\lib\net
 f:\Projects\ApiMentoria\ApiMentoria\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 f:\Projects\ApiMentoria\ApiMentoria\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 f:\Projects\ApiMentoria\ApiMentoria\bin\Debug\netcoreapp3.1\Core.dll
-f:\Projects\ApiMentoria\ApiMentoria\bin\Debug\netcoreapp3.1\Infrastructure.dll
 f:\Projects\ApiMentoria\ApiMentoria\bin\Debug\netcoreapp3.1\Repository.dll
-f:\Projects\ApiMentoria\ApiMentoria\bin\Debug\netcoreapp3.1\Service.dll
 f:\Projects\ApiMentoria\ApiMentoria\bin\Debug\netcoreapp3.1\Core.pdb
-f:\Projects\ApiMentoria\ApiMentoria\bin\Debug\netcoreapp3.1\Service.pdb
 f:\Projects\ApiMentoria\ApiMentoria\bin\Debug\netcoreapp3.1\Repository.pdb
-f:\Projects\ApiMentoria\ApiMentoria\bin\Debug\netcoreapp3.1\Infrastructure.pdb
 f:\Projects\ApiMentoria\ApiMentoria\obj\Debug\netcoreapp3.1\ApiMentoria.csprojAssemblyReference.cache
 f:\Projects\ApiMentoria\ApiMentoria\obj\Debug\netcoreapp3.1\ApiMentoria.MvcApplicationPartsAssemblyInfo.cache
 f:\Projects\ApiMentoria\ApiMentoria\obj\Debug\netcoreapp3.1\ApiMentoria.AssemblyInfoInputs.cache

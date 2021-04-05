@@ -30,9 +30,6 @@
               },
               "f:\\Projects\\ApiMentoria\\Repository\\Repository.csproj": {
                 "projectPath": "f:\\Projects\\ApiMentoria\\Repository\\Repository.csproj"
-              },
-              "f:\\Projects\\ApiMentoria\\Service\\Service.csproj": {
-                "projectPath": "f:\\Projects\\ApiMentoria\\Service\\Service.csproj"
               }
             }
           }
@@ -94,60 +91,6 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp3.1": {
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "f:\\Projects\\ApiMentoria\\Infrastructure\\Infrastructure.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "f:\\Projects\\ApiMentoria\\Infrastructure\\Infrastructure.csproj",
-        "projectName": "Infrastructure",
-        "projectPath": "f:\\Projects\\ApiMentoria\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Battery\\.nuget\\packages\\",
-        "outputPath": "f:\\Projects\\ApiMentoria\\Infrastructure\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Battery\\AppData\\Roaming\\NuGet\\NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp3.1"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp3.1": {
-            "projectReferences": {
-              "f:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
-                "projectPath": "f:\\Projects\\ApiMentoria\\Core\\Core.csproj"
-              }
-            }
           }
         },
         "warningProperties": {
@@ -246,63 +189,6 @@
               "version": "[5.0.0, )"
             }
           },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "f:\\Projects\\ApiMentoria\\Service\\Service.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "f:\\Projects\\ApiMentoria\\Service\\Service.csproj",
-        "projectName": "Service",
-        "projectPath": "f:\\Projects\\ApiMentoria\\Service\\Service.csproj",
-        "packagesPath": "C:\\Users\\Battery\\.nuget\\packages\\",
-        "outputPath": "f:\\Projects\\ApiMentoria\\Service\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Battery\\AppData\\Roaming\\NuGet\\NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp3.1"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp3.1": {
-            "projectReferences": {
-              "f:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
-                "projectPath": "f:\\Projects\\ApiMentoria\\Core\\Core.csproj"
-              },
-              "f:\\Projects\\ApiMentoria\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "f:\\Projects\\ApiMentoria\\Infrastructure\\Infrastructure.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp3.1": {
           "imports": [
             "net461",
             "net462",

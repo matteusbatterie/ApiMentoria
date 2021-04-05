@@ -6,8 +6,6 @@ using Microsoft.Extensions.Logging;
 using Core.Entities;
 using Core.Abstractions.Service;
 
-using Core.Services;
-
 namespace ApiMentoria.Controllers
 {
     [ApiController]
