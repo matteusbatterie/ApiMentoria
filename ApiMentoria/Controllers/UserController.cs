@@ -21,6 +21,7 @@ namespace ApiMentoria.Controllers
             _service = service;
         }
 
+
         [HttpGet]
         public IEnumerable<User> Get()
         {

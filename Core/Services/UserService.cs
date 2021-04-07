@@ -9,7 +9,7 @@ namespace Core.Services
 {
     public class UserService : IUserService
     {
-        public readonly IUserRepository _repository;
+        private readonly IUserRepository _repository;
 
         public UserService(IUserRepository repository)
         {

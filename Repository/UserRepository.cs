@@ -1,23 +1,24 @@
 using System.Collections.Generic;
 using System.Data;
-
+using System.Transactions;
 using Core.Abstractions.Repository;
 using Core.Entities;
-
+using Microsoft.Data.SqlClient;
 using Repository.Helpers;
 
 namespace Repository
 {
     public class UserRepository : IUserRepository
     {
-        public readonly IDbConnection _dbConnection;
-        public readonly IDbCommand _dbCommand; 
-        public IDataReader _dataReader { get; set; }
+        private readonly IDbConnection _dbConnection;
+        private readonly IDbCommand _dbCommand;
+        private IDataReader _dataReader { get; set; }
+        private IDbTransaction _dbTransaction { get; set; }
 
-        public UserRepository(IDbConnection dbConnection, IDbCommand dbCommand) 
-        { 
+        public UserRepository(IDbConnection dbConnection, IDbCommand dbCommand)
+        {
             _dbConnection = dbConnection;
-           _dbCommand = dbCommand;
+            _dbCommand = dbCommand;
         }
 
         public IEnumerable<User> Retrieve()
@@ -26,6 +27,7 @@ namespace Repository
 
             using (_dbConnection)
             {
+
                 // Create query
                 string query = @"SELECT [Id], 
                                         [Name], 
@@ -41,6 +43,7 @@ namespace Repository
                 _dbCommand.CommandText = query;
                 _dbCommand.CommandType = CommandType.Text;
 
+
                 _dbConnection.Open();
                 _dataReader = _dbCommand.ExecuteReader();
 
@@ -54,6 +57,7 @@ namespace Repository
                 }
 
                 _dbConnection.Close();
+
             }
 
             return users;
@@ -62,6 +66,7 @@ namespace Repository
         public User Retrieve(int id)
         {
             User user = new User();
+
             using (_dbConnection)
             {
                 string query = $"SELECT * FROM [dbo].[Users] WHERE [Id] = {id}";
@@ -108,36 +113,62 @@ namespace Repository
                 _dbCommand.Parameters.Add(user.Password);
                 _dbCommand.Parameters.Add(user.CPF);
 
+                _dbTransaction = _dbConnection.BeginTransaction();
                 _dbConnection.Open();
-                _dbCommand.ExecuteNonQuery();
-                _dbConnection.Close();
+
+                try
+                {
+                    _dbCommand.ExecuteNonQuery();
+                    _dbTransaction.Commit();
+                }
+                catch (System.Exception)
+                {
+                    _dbTransaction.Rollback();
+                }
+                finally
+                {
+                    _dbConnection.Close();
+                }
             }
         }
 
         public void Update(User user)
         {
-            using (_dbConnection)
+            using (var txscope = new TransactionScope(TransactionScopeOption.RequiresNew))
             {
-                string query = @"UPDATE [dbo].[Users] 
+                using (_dbConnection)
+                {
+                    try
+                    {
+                        string query = @"UPDATE [dbo].[Users] 
                                     SET [Name] = @Name, 
                                         [Email] = @Email, 
                                         [Password] = @Password, 
                                         [CPF] = @CPF
                                     WHERE [Id] = @Id";
 
-                _dbCommand.CommandText = query;
-                _dbCommand.CommandType = CommandType.Text;
-                _dbCommand.Connection = _dbConnection;
+                        _dbCommand.CommandText = query;
+                        _dbCommand.CommandType = CommandType.Text;
+                        _dbCommand.Connection = _dbConnection;
 
-                _dbCommand.Parameters.Add(user.Id);
-                _dbCommand.Parameters.Add(user.Name);
-                _dbCommand.Parameters.Add(user.Email);
-                _dbCommand.Parameters.Add(user.Password);
-                _dbCommand.Parameters.Add(user.CPF);
+                        _dbCommand.Parameters.Add(user.Id);
+                        _dbCommand.Parameters.Add(user.Name);
+                        _dbCommand.Parameters.Add(user.Email);
+                        _dbCommand.Parameters.Add(user.Password);
+                        _dbCommand.Parameters.Add(user.CPF);
 
-                _dbConnection.Open();
-                _dbCommand.ExecuteNonQuery();
-                _dbConnection.Close();
+                        _dbConnection.Open();
+                        _dbCommand.ExecuteNonQuery();
+                    }
+                    catch (System.Exception)
+                    {
+                        txscope.Dispose();
+                    }
+                    finally
+                    {
+                        _dbConnection.Close();
+                    }
+                }
             }
         }
 
@@ -155,9 +186,22 @@ namespace Repository
 
                 _dbCommand.Parameters.Add(id);
 
+                _dbTransaction = _dbConnection.BeginTransaction();
                 _dbConnection.Open();
-                _dbCommand.ExecuteNonQuery();
-                _dbConnection.Close();
+
+                try
+                {
+                    _dbCommand.ExecuteNonQuery();
+                    _dbTransaction.Commit();
+                }
+                catch (System.Exception)
+                {
+                    _dbTransaction.Rollback();
+                }
+                finally
+                {
+                    _dbConnection.Close();
+                }
             }
         }
     }
