@@ -1,93 +1,50 @@
 using System.Collections.Generic;
-using System.Data;
 
 using Core.Abstractions.Repository;
 using Core.Entities;
 
-using Repository.Helpers;
+using Dapper;
 
 namespace Repository
 {
     public class UserRepository : IUserRepository
     {
-        public readonly IDbConnection _dbConnection;
-        public readonly IDbCommand _dbCommand; 
-        public IDataReader _dataReader { get; set; }
+        // public readonly IDbConnection _dbConnection;
+        // public readonly IDbCommand _dbCommand;
+        // private IDataReader _dataReader { get; set; }
+        // private IDbTransaction _dbTransaction { get; set; }
 
-        public UserRepository(IDbConnection dbConnection, IDbCommand dbCommand) 
-        { 
-            _dbConnection = dbConnection;
-           _dbCommand = dbCommand;
+        // public UserRepository(IDbConnection dbConnection, IDbCommand dbCommand)
+        // {
+        //     _dbConnection = dbConnection;
+        //     _dbCommand = dbCommand;
+        // }
+        private readonly DbSession _dbSession;
+
+        public UserRepository(DbSession dbSession)
+        {
+            _dbSession = dbSession;
         }
 
         public IEnumerable<User> Retrieve()
         {
-            List<User> users = new List<User>();
-
-            using (_dbConnection)
-            {
-                // Create query
-                string query = @"SELECT [Id], 
-                                        [Name], 
-                                        [Email], 
-                                        [Password], 
-                                        [CPF],
-                                   FROM [dbo].[Users]";
-
-                _dbCommand.CommandText = query;
-                _dbCommand.CommandType = CommandType.Text;
-                _dbCommand.Connection = _dbConnection;
-
-                _dbCommand.CommandText = query;
-                _dbCommand.CommandType = CommandType.Text;
-
-                _dbConnection.Open();
-                _dataReader = _dbCommand.ExecuteReader();
-
-                // Read data 
-                while (_dataReader.Read())
-                {
-                    User user = new User();
-                    user = RepositoryMapper.MapDataReaderToEntity<User>(_dataReader, user);
-
-                    users.Add(user);
-                }
-
-                _dbConnection.Close();
-            }
-
-            return users;
+            // using (_dbConnection)
+            // {
+                string query = "SELECT * FROM  [dbo].[Users]";
+                return _dbSession.Connection.Query<User>(query);
+            //}
         }
 
         public User Retrieve(int id)
         {
-            User user = new User();
-            using (_dbConnection)
-            {
-                string query = $"SELECT * FROM [dbo].[Users] WHERE [Id] = {id}";
-
-                _dbCommand.CommandText = query;
-                _dbCommand.CommandType = CommandType.Text;
-                _dbCommand.Connection = _dbConnection;
-
-                _dbConnection.Open();
-                _dataReader = _dbCommand.ExecuteReader();
-
-                while (_dataReader.Read())
-                {
-                    user = RepositoryMapper.MapDataReaderToEntity(_dataReader, user);
-                }
-
-                _dbConnection.Close();
-            }
-
-            return user;
+                string query = $@"SELECT * 
+                                FROM [dbo].[Users] 
+                                WHERE Id = {id}";
+                return _dbSession.Connection.QueryFirst<User>(query);
         }
 
         public void Create(User user)
         {
-            using (_dbConnection)
-            {
                 string query = @"INSERT INTO [dbo].[Users] 
                                             ([Name], 
                                             [Email], 
@@ -99,25 +56,11 @@ namespace Repository
                                             @Password, 
                                             @CPF)";
 
-                _dbCommand.CommandText = query;
-                _dbCommand.CommandType = CommandType.Text;
-                _dbCommand.Connection = _dbConnection;
-
-                _dbCommand.Parameters.Add(user.Name);
-                _dbCommand.Parameters.Add(user.Email);
-                _dbCommand.Parameters.Add(user.Password);
-                _dbCommand.Parameters.Add(user.CPF);
-
-                _dbConnection.Open();
-                _dbCommand.ExecuteNonQuery();
-                _dbConnection.Close();
-            }
+                _dbSession.Connection.Execute(query, user);
         }
 
         public void Update(User user)
         {
-            using (_dbConnection)
-            {
                 string query = @"UPDATE [dbo].[Users] 
                                     SET [Name] = @Name, 
                                         [Email] = @Email, 
@@ -125,40 +68,16 @@ namespace Repository
                                         [CPF] = @CPF
                                     WHERE [Id] = @Id";
 
-                _dbCommand.CommandText = query;
-                _dbCommand.CommandType = CommandType.Text;
-                _dbCommand.Connection = _dbConnection;
-
-                _dbCommand.Parameters.Add(user.Id);
-                _dbCommand.Parameters.Add(user.Name);
-                _dbCommand.Parameters.Add(user.Email);
-                _dbCommand.Parameters.Add(user.Password);
-                _dbCommand.Parameters.Add(user.CPF);
-
-                _dbConnection.Open();
-                _dbCommand.ExecuteNonQuery();
-                _dbConnection.Close();
-            }
+                _dbSession.Connection.Execute(query, user);
         }
 
         public void Delete(int id)
         {
-            using (_dbConnection)
-            {
                 string query = @"DELETE 
                                 FROM [dbo].[Users] 
                                 WHERE [Id] = @Id";
 
-                _dbCommand.CommandText = query;
-                _dbCommand.CommandType = CommandType.Text;
-                _dbCommand.Connection = _dbConnection;
-
-                _dbCommand.Parameters.Add(id);
-
-                _dbConnection.Open();
-                _dbCommand.ExecuteNonQuery();
-                _dbConnection.Close();
-            }
+                 _dbSession.Connection.Execute(query, id);
         }
     }
 }

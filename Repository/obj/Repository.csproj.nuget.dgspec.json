@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "f:\\Projects\\ApiMentoria\\Repository\\Repository.csproj": {}
+    "F:\\Projects\\ApiMentoria\\Repository\\Repository.csproj": {}
   },
   "projects": {
-    "f:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
+    "F:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "f:\\Projects\\ApiMentoria\\Core\\Core.csproj",
+        "projectUniqueName": "F:\\Projects\\ApiMentoria\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "f:\\Projects\\ApiMentoria\\Core\\Core.csproj",
+        "projectPath": "F:\\Projects\\ApiMentoria\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\Battery\\.nuget\\packages\\",
-        "outputPath": "f:\\Projects\\ApiMentoria\\Core\\obj\\",
+        "outputPath": "F:\\Projects\\ApiMentoria\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Battery\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -54,14 +54,14 @@
         }
       }
     },
-    "f:\\Projects\\ApiMentoria\\Repository\\Repository.csproj": {
+    "F:\\Projects\\ApiMentoria\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "f:\\Projects\\ApiMentoria\\Repository\\Repository.csproj",
+        "projectUniqueName": "F:\\Projects\\ApiMentoria\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "f:\\Projects\\ApiMentoria\\Repository\\Repository.csproj",
+        "projectPath": "F:\\Projects\\ApiMentoria\\Repository\\Repository.csproj",
         "packagesPath": "C:\\Users\\Battery\\.nuget\\packages\\",
-        "outputPath": "f:\\Projects\\ApiMentoria\\Repository\\obj\\",
+        "outputPath": "F:\\Projects\\ApiMentoria\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Battery\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -75,8 +75,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "f:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
-                "projectPath": "f:\\Projects\\ApiMentoria\\Core\\Core.csproj"
+              "F:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
+                "projectPath": "F:\\Projects\\ApiMentoria\\Core\\Core.csproj"
               }
             }
           }
@@ -90,6 +90,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "(, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.4, )"
