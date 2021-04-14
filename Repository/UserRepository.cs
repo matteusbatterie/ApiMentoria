@@ -6,18 +6,21 @@ using Core.Entities;
 
 using Repository.Helpers;
 
+using Dapper.Contrib;
+using Dapper.Contrib.Extensions;
+using System.Linq;
+using System;
+
 namespace Repository
 {
     public class UserRepository : IUserRepository
     {
-        public readonly IDbConnection _dbConnection;
-        public readonly IDbCommand _dbCommand; 
-        public IDataReader _dataReader { get; set; }
+        private readonly IDbConnection _dbConnection;
+        private IDbTransaction _dbTransaction;
 
-        public UserRepository(IDbConnection dbConnection, IDbCommand dbCommand) 
-        { 
+        public UserRepository(IDbConnection dbConnection)
+        {
             _dbConnection = dbConnection;
-           _dbCommand = dbCommand;
         }
 
         public IEnumerable<User> Retrieve()
@@ -26,34 +29,8 @@ namespace Repository
 
             using (_dbConnection)
             {
-                // Create query
-                string query = @"SELECT [Id], 
-                                        [Name], 
-                                        [Email], 
-                                        [Password], 
-                                        [CPF],
-                                   FROM [dbo].[Users]";
-
-                _dbCommand.CommandText = query;
-                _dbCommand.CommandType = CommandType.Text;
-                _dbCommand.Connection = _dbConnection;
-
-                _dbCommand.CommandText = query;
-                _dbCommand.CommandType = CommandType.Text;
-
                 _dbConnection.Open();
-                _dataReader = _dbCommand.ExecuteReader();
-
-                // Read data 
-                while (_dataReader.Read())
-                {
-                    User user = new User();
-                    user = RepositoryMapper.MapDataReaderToEntity<User>(_dataReader, user);
-
-                    users.Add(user);
-                }
-
-                _dbConnection.Close();
+                users = _dbConnection.GetAll<User>().ToList();
             }
 
             return users;
@@ -64,21 +41,25 @@ namespace Repository
             User user = new User();
             using (_dbConnection)
             {
-                string query = $"SELECT * FROM [dbo].[Users] WHERE [Id] = {id}";
-
-                _dbCommand.CommandText = query;
-                _dbCommand.CommandType = CommandType.Text;
-                _dbCommand.Connection = _dbConnection;
-
-                _dbConnection.Open();
-                _dataReader = _dbCommand.ExecuteReader();
-
-                while (_dataReader.Read())
+                using (_dbTransaction = _dbConnection.BeginTransaction())
                 {
-                    user = RepositoryMapper.MapDataReaderToEntity(_dataReader, user);
+                    try
+                    {
+                        _dbConnection.Open();
+                        user = _dbConnection.Get<User>(id);
+                        _dbTransaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        _dbTransaction.Rollback();
+                        throw ex;
+                    }
+                    finally
+                    {
+                        _dbTransaction.Dispose();
+                        _dbConnection.Close();
+                    }
                 }
-
-                _dbConnection.Close();
             }
 
             return user;
@@ -88,29 +69,22 @@ namespace Repository
         {
             using (_dbConnection)
             {
-                string query = @"INSERT INTO [dbo].[Users] 
-                                            ([Name], 
-                                            [Email], 
-                                            [Password], 
-                                            [CPF]) 
-                                        VALUES
-                                            (@Name, 
-                                            @Email, 
-                                            @Password, 
-                                            @CPF)";
-
-                _dbCommand.CommandText = query;
-                _dbCommand.CommandType = CommandType.Text;
-                _dbCommand.Connection = _dbConnection;
-
-                _dbCommand.Parameters.Add(user.Name);
-                _dbCommand.Parameters.Add(user.Email);
-                _dbCommand.Parameters.Add(user.Password);
-                _dbCommand.Parameters.Add(user.CPF);
-
-                _dbConnection.Open();
-                _dbCommand.ExecuteNonQuery();
-                _dbConnection.Close();
+                try
+                {
+                    _dbConnection.Open();
+                    _dbConnection.Insert<User>(user);
+                    _dbTransaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    _dbTransaction.Rollback();
+                    throw ex;
+                }
+                finally
+                {
+                    _dbTransaction.Dispose();
+                    _dbConnection.Close();
+                }
             }
         }
 
@@ -118,26 +92,22 @@ namespace Repository
         {
             using (_dbConnection)
             {
-                string query = @"UPDATE [dbo].[Users] 
-                                    SET [Name] = @Name, 
-                                        [Email] = @Email, 
-                                        [Password] = @Password, 
-                                        [CPF] = @CPF
-                                    WHERE [Id] = @Id";
-
-                _dbCommand.CommandText = query;
-                _dbCommand.CommandType = CommandType.Text;
-                _dbCommand.Connection = _dbConnection;
-
-                _dbCommand.Parameters.Add(user.Id);
-                _dbCommand.Parameters.Add(user.Name);
-                _dbCommand.Parameters.Add(user.Email);
-                _dbCommand.Parameters.Add(user.Password);
-                _dbCommand.Parameters.Add(user.CPF);
-
-                _dbConnection.Open();
-                _dbCommand.ExecuteNonQuery();
-                _dbConnection.Close();
+                try
+                {
+                    _dbConnection.Open();
+                    _dbConnection.Update<User>(user);
+                    _dbTransaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    _dbTransaction.Rollback();
+                    throw ex;
+                }
+                finally
+                {
+                    _dbTransaction.Dispose();
+                    _dbConnection.Close();
+                }
             }
         }
 
@@ -145,19 +115,22 @@ namespace Repository
         {
             using (_dbConnection)
             {
-                string query = @"DELETE 
-                                FROM [dbo].[Users] 
-                                WHERE [Id] = @Id";
-
-                _dbCommand.CommandText = query;
-                _dbCommand.CommandType = CommandType.Text;
-                _dbCommand.Connection = _dbConnection;
-
-                _dbCommand.Parameters.Add(id);
-
-                _dbConnection.Open();
-                _dbCommand.ExecuteNonQuery();
-                _dbConnection.Close();
+                try
+                {
+                    _dbConnection.Open();
+                    _dbConnection.Delete<User>(new User { Id = id });
+                    _dbTransaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    _dbTransaction.Rollback();
+                    throw ex;
+                }
+                finally
+                {
+                    _dbTransaction.Dispose();
+                    _dbConnection.Close();
+                }
             }
         }
     }
