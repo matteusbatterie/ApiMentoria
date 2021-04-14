@@ -6,6 +6,8 @@ using Core.Entities;
 
 using Repository.Helpers;
 
+using Dapper.Contrib;
+
 namespace Repository
 {
     public class UserRepository : IUserRepository
