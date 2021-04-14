@@ -190,3 +190,4 @@ f:\Projects\ApiMentoria\ApiMentoria\obj\Debug\netcoreapp3.1\staticwebassets\ApiM
 f:\Projects\ApiMentoria\ApiMentoria\obj\Debug\netcoreapp3.1\staticwebassets\ApiMentoria.StaticWebAssets.xml
 f:\Projects\ApiMentoria\ApiMentoria\obj\Debug\netcoreapp3.1\ApiMentoria.dll
 f:\Projects\ApiMentoria\ApiMentoria\obj\Debug\netcoreapp3.1\ApiMentoria.pdb
+f:\Projects\ApiMentoria\ApiMentoria\bin\Debug\netcoreapp3.1\Dapper.dll

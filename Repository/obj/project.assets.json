@@ -6077,7 +6077,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Core >= 1.0.0",
-      "Dapper",
+      "Dapper >= 2.0.78",
       "Microsoft.EntityFrameworkCore >= 5.0.4",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.4",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.4",
@@ -6128,7 +6128,7 @@
         "dependencies": {
           "Dapper": {
             "target": "Package",
-            "version": "(, )"
+            "version": "[2.0.78, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
