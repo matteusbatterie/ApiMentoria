@@ -1,7 +1,12 @@
-﻿namespace Core.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Core.Entities
 {
     public abstract class BaseEntity
     {
-        public int Id { get; set; }
+        [Key]
+        public virtual int Id { get; set; }
+
+        public BaseEntity() { }
     }
 }
