@@ -19,19 +19,19 @@ namespace Core.Services
         
         public IEnumerable<User> Retrieve()
         {
-            IEnumerable<User> users = _repository.Retrieve();
+            IEnumerable<User> users = _repository.GetAll();
             return users;
         }
 
         public User Retrieve(int id)
         {
-            User user = _repository.Retrieve(id);
+            User user = _repository.Get(id);
             return user;
         }
 
         public void Create(User user)
         {
-            if (!ValidateUserInfo(user))
+            if (!ValidateUser(user))
                 return;
 
             _repository.Create(user);
@@ -39,7 +39,7 @@ namespace Core.Services
 
         public void Update(User user)
         {
-            if (!ValidateUserInfo(user))
+            if (!ValidateUser(user))
                 return;
 
             _repository.Update(user);
@@ -52,8 +52,11 @@ namespace Core.Services
 
 
         #region Validation
-        private bool ValidateUserInfo(User user)
+        private bool ValidateUser(User user)
         {
+            var a = ValidateUserEmail(user.Email);
+            var b = ValidateUserCpf(user.CPF);
+            var c = ValidateUserName(user.Name);
             return ValidateUserEmail(user.Email)
                 && ValidateUserCpf(user.CPF)
                 && ValidateUserName(user.Name);
@@ -75,7 +78,7 @@ namespace Core.Services
 
         private bool EmailExists(string email)
         {
-            IEnumerable<User> allUsers = _repository.Retrieve();
+            IEnumerable<User> allUsers = _repository.GetAll();
             return allUsers.Any(user => user.Email == email);
         }
 
@@ -88,7 +91,7 @@ namespace Core.Services
 
         private bool CpfExists(string cpf)
         {
-            IEnumerable<User> allUsers = _repository.Retrieve();
+            IEnumerable<User> allUsers = _repository.GetAll();
             return allUsers.Any(user => user.CPF == cpf);
         }
 

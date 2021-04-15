@@ -27,7 +27,7 @@ namespace ApiMentoria.Controllers
             return _service.Retrieve();
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public void Create(User user)
         {
             _service.Create(user);

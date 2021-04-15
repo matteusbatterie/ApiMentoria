@@ -30,7 +30,6 @@ namespace ApiMentoria
             services.AddControllers();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IDbCommand, SqlCommand>();
             services.AddTransient<IDbConnection>(db => new SqlConnection(
                     Configuration.GetConnectionString("ApiMentoriaContext")));
         }
