@@ -2,6 +2,27 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "Extensions.FluentValidation.Br/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "FluentValidation": "10.0.4"
+        },
+        "compile": {
+          "lib/netstandard2.0/FluentValidation.Extensions.Br.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/FluentValidation.Extensions.Br.dll": {}
+        }
+      },
+      "FluentValidation/10.0.4": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/FluentValidation.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/FluentValidation.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.5.0": {
         "type": "package",
         "compile": {
@@ -1662,6 +1683,36 @@
     }
   },
   "libraries": {
+    "Extensions.FluentValidation.Br/1.0.2": {
+      "sha512": "ZVoXpIFkUhufHoO3/MkdIMZU0+8Mjy1K9TNd0zroT/J92SqU8V/ryZqVn4Mdbeq2aAC5yrtAhowg8Vd+FjSCSw==",
+      "type": "package",
+      "path": "extensions.fluentvalidation.br/1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "extensions.fluentvalidation.br.1.0.2.nupkg.sha512",
+        "extensions.fluentvalidation.br.nuspec",
+        "lib/netstandard2.0/FluentValidation.Extensions.Br.dll"
+      ]
+    },
+    "FluentValidation/10.0.4": {
+      "sha512": "LqEYHuF5gXBJzG9/aUQS50TJP5cZgh/twvPLV7iTtFFGF6isGBkNXOhr9VwmSjlFRIVOqcMtkGuHwuPbU+XpoQ==",
+      "type": "package",
+      "path": "fluentvalidation/10.0.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fluent-validation-icon.png",
+        "fluentvalidation.10.0.4.nupkg.sha512",
+        "fluentvalidation.nuspec",
+        "lib/net5.0/FluentValidation.dll",
+        "lib/net5.0/FluentValidation.xml",
+        "lib/netstandard2.0/FluentValidation.dll",
+        "lib/netstandard2.0/FluentValidation.xml",
+        "lib/netstandard2.1/FluentValidation.dll",
+        "lib/netstandard2.1/FluentValidation.xml"
+      ]
+    },
     "Microsoft.CSharp/4.5.0": {
       "sha512": "kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
       "type": "package",
@@ -6178,6 +6229,8 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Core >= 1.0.0",
+      "Extensions.FluentValidation.Br",
+      "FluentValidation >= 10.0.4",
       "Repository >= 1.0.0",
       "System.Data.SqlClient >= 4.8.2"
     ]
@@ -6188,11 +6241,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "f:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
+      "projectUniqueName": "F:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
       "projectName": "ApiMentoria",
-      "projectPath": "f:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
+      "projectPath": "F:\\Projects\\ApiMentoria\\ApiMentoria\\ApiMentoria.csproj",
       "packagesPath": "C:\\Users\\Battery\\.nuget\\packages\\",
-      "outputPath": "f:\\Projects\\ApiMentoria\\ApiMentoria\\obj\\",
+      "outputPath": "F:\\Projects\\ApiMentoria\\ApiMentoria\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Battery\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -6206,11 +6259,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "f:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
-              "projectPath": "f:\\Projects\\ApiMentoria\\Core\\Core.csproj"
+            "F:\\Projects\\ApiMentoria\\Core\\Core.csproj": {
+              "projectPath": "F:\\Projects\\ApiMentoria\\Core\\Core.csproj"
             },
-            "f:\\Projects\\ApiMentoria\\Repository\\Repository.csproj": {
-              "projectPath": "f:\\Projects\\ApiMentoria\\Repository\\Repository.csproj"
+            "F:\\Projects\\ApiMentoria\\Repository\\Repository.csproj": {
+              "projectPath": "F:\\Projects\\ApiMentoria\\Repository\\Repository.csproj"
             }
           }
         }
@@ -6224,6 +6277,14 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "Extensions.FluentValidation.Br": {
+            "target": "Package",
+            "version": "(, )"
+          },
+          "FluentValidation": {
+            "target": "Package",
+            "version": "[10.0.4, )"
+          },
           "System.Data.SqlClient": {
             "target": "Package",
             "version": "[4.8.2, )"
