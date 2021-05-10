@@ -12,6 +12,7 @@ using Core.Abstractions.Service;
 using Repository;
 using Core.Services;
 using Microsoft.Data.SqlClient;
+using ApiMentoria.Util;
 
 namespace ApiMentoria
 {
@@ -33,6 +34,9 @@ namespace ApiMentoria
             services.AddTransient<IDbCommand, SqlCommand>();
             services.AddTransient<IDbConnection>(db => new SqlConnection(
                     Configuration.GetConnectionString("ApiMentoriaContext")));
+
+            services.ConfigureSwagger();
+            services.ConfigureAuthentication(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,10 +47,22 @@ namespace ApiMentoria
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger(c =>
+            {
+                c.RouteTemplate = "/api/docs/{documentName}/swagger.json";
+            });
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("v1/swagger.json", "API Mentoria");
+                c.RoutePrefix = "api/docs";
+            });
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

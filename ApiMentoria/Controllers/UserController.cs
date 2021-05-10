@@ -5,10 +5,12 @@ using Microsoft.Extensions.Logging;
 
 using Core.Entities;
 using Core.Abstractions.Service;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiMentoria.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
@@ -21,6 +23,7 @@ namespace ApiMentoria.Controllers
             _service = service;
         }
 
+        
         [HttpGet]
         public IEnumerable<User> Get()
         {

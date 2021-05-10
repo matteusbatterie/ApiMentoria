@@ -12,7 +12,7 @@ namespace ApiMentoria.Models.Validation
             
             RuleFor(user => user.Email)
                 .NotEmpty().WithMessage("O campo CPF é obrigatório.")
-                .IsValidCPF();
+                .IsValidCPF();  // implementar o proprio validar CPF
             
             RuleFor(user => user.Email)
                 .NotEmpty().WithMessage("O campo e-mail é obrigatório.")
