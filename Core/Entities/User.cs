@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities
 {
-    [Table("User")]
+    [Table("Users")]
     public class User : BaseEntity
     {
         [Required]
