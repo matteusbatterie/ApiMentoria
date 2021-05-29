@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Core.Entities;
 
-namespace Core.Abstractions.Service
+namespace Core.Abstractions.Services
 {
     public interface IUserService
     {

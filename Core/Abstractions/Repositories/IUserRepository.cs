@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Core.Entities;
 
-namespace Core.Abstractions.Repository
+namespace Core.Abstractions.Repositories
 {
     public interface IUserRepository
     {
@@ -10,5 +11,7 @@ namespace Core.Abstractions.Repository
         void Create(User user);
         void Update(User entity);
         void Delete(int id);
+
+        Task<User> GetUserByEmailAsync(string email);
     }
 }

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 
 using Core.Entities;
-using Core.Abstractions.Service;
-using Core.Abstractions.Repository;
+using Core.Abstractions.Services;
+using Core.Abstractions.Repositories;
 
 namespace Core.Services
 {

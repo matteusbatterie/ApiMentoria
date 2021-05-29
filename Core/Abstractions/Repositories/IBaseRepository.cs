@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Core.Entities;
 
-namespace Core.Abstractions.Repository
+namespace Core.Abstractions.Repositories
 {
     public interface IBaseRepository<TEntity> where TEntity : BaseEntity
     {
@@ -10,5 +10,7 @@ namespace Core.Abstractions.Repository
         void Create(TEntity obj);
         void Update(TEntity obj);
         void Delete(int id);
+
+        
     }
 }

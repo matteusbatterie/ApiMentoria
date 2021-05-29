@@ -6,13 +6,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-using Core.Abstractions.Repository;
-using Core.Abstractions.Service;
+using Core.Abstractions.Repositories;
+using Core.Abstractions.Services;
 
-using Repository;
 using Core.Services;
 using Microsoft.Data.SqlClient;
 using ApiMentoria.Util;
+using Repository.Repositories;
 
 namespace ApiMentoria
 {
@@ -29,11 +29,13 @@ namespace ApiMentoria
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IUserService, UserService>();
+
             services.AddTransient<IDbCommand, SqlCommand>();
             services.AddTransient<IDbConnection>(db => new SqlConnection(
                     Configuration.GetConnectionString("ApiMentoriaContext")));
+
+            services.MapServices();
+            services.MapRepositories();
 
             services.ConfigureSwagger();
             services.ConfigureAuthentication(Configuration);
@@ -62,7 +64,7 @@ namespace ApiMentoria
 
             app.UseRouting();
 
-            app.UseAuthentication();
+            //app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

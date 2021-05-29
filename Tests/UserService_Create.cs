@@ -2,7 +2,7 @@ using Moq;
 using Xunit;
 
 using Core.Entities;
-using Core.Abstractions.Repository;
+using Core.Abstractions.Repositories;
 
 using Core.Services;
 

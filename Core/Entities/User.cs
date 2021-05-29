@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Core.Enums;
 
 namespace Core.Entities
 {
@@ -14,6 +15,9 @@ namespace Core.Entities
         public string Password { get; set; }
         [Required]
         public string CPF { get; set; }
+
+        [Required]  
+        public UserRole Role { get; set; }
 
         public User() { }
     }
