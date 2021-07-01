@@ -15,7 +15,7 @@ namespace Core.Entities
         public string Password { get; set; }
     
         [Required]  
-        public UserRole UserRole { get; set; }
+        public UserRole Role { get; set; }
 
         public User() { }
     }

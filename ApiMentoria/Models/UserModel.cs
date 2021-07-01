@@ -10,7 +10,7 @@ namespace ApiMentoria.Models
         public string Password { get; set; }
         public string CPF { get; set; }
 
-        public UserRole UserRole { get; set; }
+        public UserRole Role { get; set; }
 
         public UserModel() { }
     }
