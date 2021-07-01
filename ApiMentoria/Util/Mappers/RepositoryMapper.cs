@@ -2,7 +2,7 @@ using Core.Abstractions.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using Repository.Repositories;
 
-namespace ApiMentoria.Util
+namespace ApiMentoria.Util.Mappers
 {
     public static class RepositoryMapper
     {

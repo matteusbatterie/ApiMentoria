@@ -22,11 +22,9 @@ namespace Repository.Repositories
         {
             IEnumerable<Employee> employees;
 
-            using (_connection)
-            {
-                _connection.Open();
-                employees = _connection.GetAll<Employee>();
-            }
+            _connection.Open();
+            employees = _connection.GetAll<Employee>();
+            _connection.Close();
 
             return employees;
         }
@@ -35,22 +33,20 @@ namespace Repository.Repositories
         {
             Employee employee = new Employee();
 
-            using (_connection)
-            {
-                _connection.Open();
-                employee = _connection.Get<Employee>(id);
-            }
+            _connection.Open();
+            employee = _connection.Get<Employee>(id);
+            _connection.Close();
 
             return employee;
         }
 
         public void Create(Employee employee)
         {
-            using (_connection)
+            _connection.Open();
+            using (_transaction = _connection.BeginTransaction())
             {
                 try
                 {
-                    _connection.Open();
                     _connection.Insert<Employee>(employee);
                     _transaction.Commit();
                 }

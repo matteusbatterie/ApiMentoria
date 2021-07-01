@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-
+using ApiMentoria.Models;
+using ApiMentoria.Util;
 using Core.Entities;
 using Core.Abstractions.Services;
-using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
+using System.Linq;
 
 namespace ApiMentoria.Controllers
 {
@@ -30,19 +29,20 @@ namespace ApiMentoria.Controllers
         /// </summary>
         /// <returns>List of Users</returns>
         [HttpGet]
-        public IEnumerable<User> Get()
+        public List<UserModel> Get()
         {
-            var users = _service.Retrieve();
-            return users;
+            var users = _service.Retrieve().ToList();
+            return users.ConvertList<UserModel, User>();
         }
 
         /// <summary>
         /// Inserts a new User to the system.
         /// </summary>
-        /// <param name="user">User object</param>
+        /// <param name="model">User object</param>
         [HttpPost]
-        public void Create(User user)
+        public void Create(UserModel model)
         {
+            User user = model.Convert<User, UserModel>();
             _service.Create(user);
         }
 
@@ -61,9 +61,9 @@ namespace ApiMentoria.Controllers
         /// </summary>
         /// <param name="user">Object with the new data and matching ID</param>
         [HttpPut]
-        public void Update(User user)
+        public void Update(UserModel user)
         {
-            _service.Update(user);
+            _service.Update(user.Convert<User, UserModel>());
         }
         #endregion
     }

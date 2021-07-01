@@ -12,8 +12,6 @@ namespace Repository.Configuration.Tables
                 .IsRequired();
             builder.Property(user => user.Email)
                 .IsRequired();
-            builder.Property(user => user.CPF)
-                .IsRequired();
             builder.Property(user => user.Password)
                 .IsRequired();
         }

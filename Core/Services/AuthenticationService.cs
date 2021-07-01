@@ -35,7 +35,7 @@ namespace Core.Services
                 {
                     Issuer = _configuration["JwtData:Issuer"],
                     Audience = _configuration["JwtData:Issuer"],
-                    Subject = GenerateClaims(user.Id, user.Role),
+                    Subject = GenerateClaims(user.Id, user.UserRole),
                     Expires = DateTime.Now.AddHours(Convert.ToInt32(_configuration["JwtData:JwtExpirationHours"])),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey), SecurityAlgorithms.HmacSha256)
                 };
@@ -53,7 +53,11 @@ namespace Core.Services
         {
             var user = await _userRepository.GetUserByEmailAsync(email);
 
-            if (user != null && BCrypt.Net.BCrypt.Verify(password, user.Password))
+            // if (user != null && BCrypt.Net.BCrypt.Verify(password, user.Password))
+            // {
+            //     return true;
+            // }
+            if(user != null && user.Email == email && user.Password == password)
             {
                 return true;
             }

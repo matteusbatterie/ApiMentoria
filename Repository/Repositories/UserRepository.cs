@@ -24,11 +24,9 @@ namespace Repository.Repositories
         {
             IEnumerable<User> users;
 
-            using (_connection)
-            {
-                _connection.Open();
-                users = _connection.GetAll<User>();
-            }
+            _connection.Open();
+            users = _connection.GetAll<User>();
+            _connection.Close();
 
             return users;
         }
@@ -36,40 +34,22 @@ namespace Repository.Repositories
         public User Retrieve(int id)
         {
             User user = new User();
-            using (_connection)
-            {
-                using (_transaction = _connection.BeginTransaction())
-                {
-                    try
-                    {
-                        _connection.Open();
-                        user = _connection.Get<User>(id);
-                        _transaction.Commit();
-                    }
-                    catch (Exception ex)
-                    {
-                        _transaction.Rollback();
-                        throw ex;
-                    }
-                    finally
-                    {
-                        _transaction.Dispose();
-                        _connection.Close();
-                    }
-                }
-            }
+
+            _connection.Open();
+            user = _connection.Get<User>(id);
+            _connection.Close();
 
             return user;
         }
 
         public void Create(User user)
         {
-            using (_connection)
+            _connection.Open();
+            using (_transaction = _connection.BeginTransaction())
             {
                 try
                 {
-                    _connection.Open();
-                    _connection.Insert<User>(user);
+                    _connection.Insert<User>(user, _transaction);
                     _transaction.Commit();
                 }
                 catch (Exception ex)
@@ -87,12 +67,12 @@ namespace Repository.Repositories
 
         public void Update(User user)
         {
-            using (_connection)
+            _connection.Open();
+            using (_transaction = _connection.BeginTransaction())
             {
                 try
                 {
-                    _connection.Open();
-                    _connection.Update<User>(user);
+                    _connection.Update<User>(user, _transaction);
                     _transaction.Commit();
                 }
                 catch (Exception ex)
@@ -110,12 +90,12 @@ namespace Repository.Repositories
 
         public void Delete(int id)
         {
-            using (_connection)
+            _connection.Open();
+            using (_transaction = _connection.BeginTransaction())
             {
                 try
                 {
-                    _connection.Open();
-                    _connection.Delete<User>(new User { Id = id });
+                    _connection.Delete<User>(new User { Id = id }, _transaction);
                     _transaction.Commit();
                 }
                 catch (Exception ex)
@@ -131,33 +111,30 @@ namespace Repository.Repositories
             }
         }
 
-
         public async Task<User> GetUserByEmailAsync(string email)
         {
             User user = new User();
-            using (_connection)
+
+            _connection.Open();
+            using (_transaction = _connection.BeginTransaction())
             {
-                using (_transaction = _connection.BeginTransaction())
+                try
                 {
-                    try
-                    {
-                        _connection.Open();
-                        string query = @"SELECT * 
-                                        FROM Users 
-                                        WHERE Email = @email";
-                        user = await _connection.QueryFirstAsync<User>(query, email);
-                        _transaction.Commit();
-                    }
-                    catch (Exception ex)
-                    {
-                        _transaction.Rollback();
-                        throw ex;
-                    }
-                    finally
-                    {
-                        _transaction.Dispose();
-                        _connection.Close();
-                    }
+                    string query = @"SELECT * 
+                                    FROM Users 
+                                    WHERE Email = @Email";
+                    user = await _connection.QueryFirstAsync<User>(query, new { Email = email }, _transaction);
+                    _transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    _transaction.Rollback();
+                    throw ex;
+                }
+                finally
+                {
+                    _transaction.Dispose();
+                    _connection.Close();
                 }
             }
 

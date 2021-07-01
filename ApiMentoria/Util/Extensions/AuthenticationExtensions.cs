@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace ApiMentoria.Util
+namespace ApiMentoria.Util.Extensions
 {
     public static class AuthenticationExtensions
     {

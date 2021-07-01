@@ -1,18 +1,14 @@
+using System;
 using System.Data;
-
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
-using Core.Abstractions.Repositories;
-using Core.Abstractions.Services;
-
-using Core.Services;
-using Microsoft.Data.SqlClient;
-using ApiMentoria.Util;
-using Repository.Repositories;
+using ApiMentoria.Util.Extensions;
+using ApiMentoria.Util.Mappers;
 
 namespace ApiMentoria
 {
@@ -28,14 +24,16 @@ namespace ApiMentoria
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies(), null));
+
+            services.MapRepositories();
+            services.MapServices();
 
             services.AddTransient<IDbCommand, SqlCommand>();
             services.AddTransient<IDbConnection>(db => new SqlConnection(
                     Configuration.GetConnectionString("ApiMentoriaContext")));
-
-            services.MapServices();
-            services.MapRepositories();
 
             services.ConfigureSwagger();
             services.ConfigureAuthentication(Configuration);
@@ -64,7 +62,7 @@ namespace ApiMentoria
 
             app.UseRouting();
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

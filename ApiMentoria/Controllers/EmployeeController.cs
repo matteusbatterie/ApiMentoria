@@ -1,11 +1,21 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using ApiMentoria.Models;
+using ApiMentoria.Util;
 using Core.Abstractions.Services;
 using Core.Entities;
+using Core.Enums;
+using Core.Services.Strategies.Employees.Reports;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace ApiMentoria.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class EmployeeController : ControllerBase
@@ -25,19 +35,20 @@ namespace ApiMentoria.Controllers
         /// </summary>
         /// <returns>List of Employees</returns>
         [HttpGet]
-        public IEnumerable<Employee> Get()
+        public List<EmployeeModel> Get()
         {
-            var users = _service.Retrieve();
-            return users;
+            var users = _service.Retrieve().ToList();
+            return users.ConvertList<EmployeeModel, Employee>();
         }
 
         /// <summary>
         /// Inserts a new Employee to the system.
         /// </summary>
-        /// <param name="employee">Employee object</param>
+        /// <param name="model">Employee object</param>
         [HttpPost]
-        public void Create(Employee employee)
+        public void Create(EmployeeModel model)
         {
+            Employee employee = model.Convert<Employee, EmployeeModel>();
             _service.Create(employee);
         }
 
@@ -54,12 +65,29 @@ namespace ApiMentoria.Controllers
         /// <summary>
         /// Updates the employee with the data given by parameter.
         /// </summary>
-        /// <param name="employee">Object with the new data and matching ID</param>
+        /// <param name="model">Object with the new data and matching ID</param>
         [HttpPut]
-        public void Update(Employee employee)
+        public void Update(EmployeeModel model)
         {
+            Employee employee = model.Convert<Employee, EmployeeModel>();
             _service.Update(employee);
         }
         #endregion
+
+        /// <summary>
+        /// Returns a list of reports from all active employees in the database 
+        /// depending on the current user's Role.
+        /// </summary>
+        /// <returns>Reports from all active employees</returns>
+        [HttpGet("Reports")]
+        public IActionResult Reports()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            var claim =  identity.FindFirst("userRole").Value;
+            UserRole role = (UserRole)Enum.Parse(typeof(UserRole), claim);
+            var reports = _service.GetReports(role).ToList();
+            var result = JsonConvert.SerializeObject(reports);
+            return Ok(result);
+        }
     }
 }
