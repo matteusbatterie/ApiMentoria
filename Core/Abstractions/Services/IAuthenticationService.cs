@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Core.Abstractions.Service
+namespace Core.Abstractions.Services
 {
     
     public interface IAuthenticationService

@@ -2,7 +2,7 @@ using Moq;
 using Xunit;
 
 using Core.Entities;
-using Core.Abstractions.Repository;
+using Core.Abstractions.Repositories;
 
 using Core.Services;
 
@@ -39,7 +39,6 @@ namespace Tests
                 Name = name,
                 Email = "test@email",
                 Password = "test_password",
-                CPF = "577.284.690-61",
             };
 
             // Act
@@ -76,7 +75,6 @@ namespace Tests
                 Name = "Testing 10 characters",
                 Email = email,
                 Password = "test_password",
-                CPF = "577.284.690-61",
             };
 
             // Act
@@ -112,7 +110,6 @@ namespace Tests
                 Name = "Testing 10 characters",
                 Email = "test@email",
                 Password = "test_password",
-                CPF = cpf,
             };
 
             // Act

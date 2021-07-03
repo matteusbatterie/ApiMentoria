@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Data;
 
-namespace Core.Abstractions.Repository
+namespace Core.Abstractions.Repository.Repositories
 {
     public abstract class BaseRepository
     {

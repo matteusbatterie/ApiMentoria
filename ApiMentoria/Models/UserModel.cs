@@ -1,3 +1,5 @@
+using Core.Enums;
+
 namespace ApiMentoria.Models
 {
     public class UserModel
@@ -7,6 +9,8 @@ namespace ApiMentoria.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public string CPF { get; set; }
+
+        public UserRole Role { get; set; }
 
         public UserModel() { }
     }

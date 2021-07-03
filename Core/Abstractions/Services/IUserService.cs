@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using Core.Entities;
 
-namespace Core.Abstractions.Repository
+namespace Core.Abstractions.Services
 {
-    public interface IUserRepository
+    public interface IUserService
     {
         IEnumerable<User> Retrieve();
         User Retrieve(int id);
         void Create(User user);
-        void Update(User entity);
+        void Update(User user);
         void Delete(int id);
     }
 }

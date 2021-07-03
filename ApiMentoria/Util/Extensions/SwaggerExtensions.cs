@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace ApiMentoria.Util
+namespace ApiMentoria.Util.Extensions
 {
     public static class SwaggerExtensions
     {
