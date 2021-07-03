@@ -35,7 +35,7 @@ namespace Core.Services
                 {
                     Issuer = _configuration["JwtData:Issuer"],
                     Audience = _configuration["JwtData:Issuer"],
-                    Subject = GenerateClaims(user.Id, user.UserRole),
+                    Subject = GenerateClaims(user.Id, user.Role),
                     Expires = DateTime.Now.AddHours(Convert.ToInt32(_configuration["JwtData:JwtExpirationHours"])),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey), SecurityAlgorithms.HmacSha256)
                 };

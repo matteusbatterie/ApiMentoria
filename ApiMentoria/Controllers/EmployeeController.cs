@@ -7,7 +7,6 @@ using ApiMentoria.Util;
 using Core.Abstractions.Services;
 using Core.Entities;
 using Core.Enums;
-using Core.Services.Strategies.Employees.Reports;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
